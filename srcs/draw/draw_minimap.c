@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/02 21:38:42 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:12:42 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	draw_background(t_game *game)
 		{
 			if (game->map[y][x] == '1')
 				draw(x * MINIMAP_PX, y * MINIMAP_PX,
-					&game->sprites->minimap_wall, game);
+					&game->scene->minimap_wall, game);
 			else if (game->map[y][x] != '1' && game->map[y][x] != ' '
 				&& game->map[y][x] != '\n')
 				draw(x * MINIMAP_PX, y * MINIMAP_PX,
-					&game->sprites->minimap_floor, game);
+					&game->scene->minimap_floor, game);
 			x++;
 		}
 		y++;

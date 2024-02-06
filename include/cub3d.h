@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:32:15 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/02 21:49:08 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:14:27 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,25 @@ typedef struct s_buffer
 	int			height;
 }				t_buffer;
 
-typedef struct s_sprites
+typedef struct s_color
+{
+	int			red;
+	int			green;
+	int			blue;
+	int			code_rgb;
+}				t_color;
+
+typedef struct s_scene
 {
 	t_buffer	minimap_wall;
 	t_buffer	minimap_floor;
-}				t_sprites;
+	t_buffer	text_no;
+	t_buffer	text_so;
+	t_buffer	text_we;
+	t_buffer	text_ea;
+	t_color		color_f;
+	t_color		color_c;
+}				t_scene;
 
 typedef struct s_game
 {
@@ -79,7 +93,7 @@ typedef struct s_game
 	char		**map_checker;
 	t_player	*player;
 	int			nbr_player;
-	t_sprites	*sprites;
+	t_scene		*scene;
 }				t_game;
 
 // build_structure
@@ -87,7 +101,7 @@ t_game			*gm(void);
 void			build(char *map_path);
 void			build_file(char *map_path);
 void			build_characters(void);
-void			build_sprites(void);
+void			build_scene(void);
 
 // msg
 void			error_msg(char *message);
@@ -109,7 +123,7 @@ t_coord			*build_coord(double y, double x);
 void			hook(void);
 
 // draw
-void			draw_background(t_game *game);
+void			draw_minimap(t_game *game);
 void			draw(int x, int y, t_buffer *sprite, t_game *game);
 void			put_pixel(t_buffer *img, int x, int y, int color);
 

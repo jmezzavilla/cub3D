@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:31 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/02 21:54:13 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:14:44 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@ void	check_floodfill(char **map)
 	int	size_x;
 	int	y;
 	int	size_y;
+	int	x;
+	int	size_x;
+	int	y;
+	int	size_y;
 
 	y = 0;
 	while(map[y])
@@ -80,11 +84,6 @@ void	check_floodfill(char **map)
 }*/
 void	floodfill(char **map)
 {
-	int	x;
-	int	size_x;
-	int	y;
-	int	size_y;
-	
 	y = 0;
 	size_y = ft_strlen_matrix(map);
 	while (y < size_y)
