@@ -16,7 +16,10 @@
 		"initializer_list": "c",
 		"utility": "c",
 		"time.h": "c",
-		"functional": "c"
+		"functional": "c",
+		"stdbool.h": "c",
+		"math.h": "c",
+		"string": "c"
 	}
 	
 }

@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/02 21:56:06 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:23:41 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ void	build(char *map_path)
 	build_game();
 	build_characters();
 	build_mlx_itens(gm());
-	build_sprites();
+	build_scene();
 	check();
 }

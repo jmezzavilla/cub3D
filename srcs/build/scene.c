@@ -1,0 +1,81 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   scene.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/01 20:12:06 by jealves-          #+#    #+#             */
+/*   Updated: 2024/02/06 13:15:20 by jealves-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void	load_sprite(char *path, t_buffer *target)
+{
+	target->img = mlx_xpm_file_to_image(gm()->mlx, path, &target->width,
+			&target->height);
+	if (!target->img)
+		error_msg("Corrupted Sprite");
+	target->addr = mlx_get_data_addr(target->img, &target->bits_per_pixel,
+			&target->line_length, &target->endian);
+}
+
+void	create_sprites(char *sprite_path, t_buffer *target)
+{
+	int	fd_xpm;
+
+	fd_xpm = open(sprite_path, O_RDONLY);
+	if (fd_xpm == -1)
+		error_msg(ft_strjoin("Cannot open file: ", sprite_path));
+	close(fd_xpm);
+	load_sprite(sprite_path, target);
+	fd_xpm = -1;
+}
+
+int	get_nbr(char *color)
+{
+	int	nbr;
+
+	if (!color)
+		error_msg("Empty color");
+	if (!ft_isnumber(color))
+		error_msg("Color must be a number");
+	nbr = ft_atoi(color);
+	if (nbr < 0 || nbr > 255)
+		error_msg("Invalid color");
+	return (nbr);
+}
+
+void	create_color(char *rgb, t_color *color)
+{
+	char	**split_rgb;
+
+	if (!rgb)
+		error_msg("Empty RGB");
+	split_rgb = ft_split(rgb, ',');
+	if (!split_rgb)
+		error_msg("Invalid RGB");
+	if (ft_strlen_matrix(split_rgb) != 3)
+		error_msg("Invalid color pattern");
+	color->red = get_nbr(ft_strtrim(split_rgb[0], " "));
+	color->green = get_nbr(ft_strtrim(split_rgb[1], " "));
+	color->blue = get_nbr(ft_strtrim(split_rgb[2], " "));
+	color->code_rgb = ((255 & 0xff << 24) + ((color->red & 0xff) << 16)
+			+ ((color->green & 0xff) << 8) + ((color->blue & 0xff)));
+	ft_cleanup_strs(split_rgb);
+}
+
+void	build_scene(void)
+{
+	gm()->scene = ft_calloc(sizeof(t_scene), 1);
+	create_color(gm()->file->color_c, &gm()->scene->color_c);
+	create_color(gm()->file->color_f, &gm()->scene->color_f);
+	create_sprites(gm()->file->path_no, &gm()->scene->text_no);
+	create_sprites(gm()->file->path_so, &gm()->scene->text_so);
+	create_sprites(gm()->file->path_we, &gm()->scene->text_we);
+	create_sprites(gm()->file->path_ea, &gm()->scene->text_ea);
+	create_sprites("sprites/minimap/floor.xpm", &gm()->scene->minimap_floor);
+	create_sprites("sprites/minimap/wall.xpm", &gm()->scene->minimap_wall);
+}
