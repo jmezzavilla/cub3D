@@ -6,13 +6,13 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/06 13:12:42 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:23:14 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_background(t_game *game)
+void	draw_minimap(t_game *game)
 {
 	int	y;
 	int	x;
