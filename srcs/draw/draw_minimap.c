@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/08 23:04:56 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/08 23:05:12 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ int	get_color(char c)
 
 	if (c == '0')
 		color = 0xf0f8ff;
-	else if (c == '2')
-		color = 0x00FF00;
-	else if (c == '1' || c == '3')
+	else if (c == '1')
 		color = 0x1E90FF;
 	else
 		color = 0;
