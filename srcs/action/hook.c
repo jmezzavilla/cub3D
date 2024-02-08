@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/06 13:16:01 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:33:27 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ int	keypress(int keycode, t_game *game)
 		exit(EXIT_SUCCESS);
 	}
 	if (keycode == LETTER_KEY_UP)
-		game->player->pos->y = game->player->pos->y + 0.5;
+		game->player->pos->y = game->player->pos->y - 0.039;
 	if (keycode == LETTER_KEY_DOWN)
-		game->player->pos->y = game->player->pos->y - 0.5;
+		game->player->pos->y = game->player->pos->y + 0.039;
 	if (keycode == LETTER_KEY_LEFT)
-		game->player->pos->x = game->player->pos->x - 0.5;
+		game->player->pos->x = game->player->pos->x - 0.039;
 	if (keycode == LETTER_KEY_RIGHT)
-		game->player->pos->y = game->player->pos->x + 0.5;
+		game->player->pos->x = game->player->pos->x + 0.039;
 	return (0);
 }
 
