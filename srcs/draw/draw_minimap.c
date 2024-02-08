@@ -6,13 +6,13 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/06 21:56:19 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/08 23:04:56 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_25px(t_buffer *img, int x, int y, int color)
+void	draw_map(t_buffer *img, int x, int y, int color)
 {
 	int	i;
 	int	j;
@@ -80,7 +80,7 @@ void	draw_minimap(t_game *game)
 		{
 			color = get_color(game->map[y][x]);
 			if (color)
-				draw_25px(&game->image_buffer, x, y, color);
+				draw_map(&game->image_buffer, x, y, color);
 			x++;
 		}
 		y++;
