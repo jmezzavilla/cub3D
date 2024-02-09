@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/07 16:33:27 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:15:37 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 
 int	loop(t_game *game)
 {
-	game->image_buffer.img = mlx_new_image(game->mlx, game->image_buffer.width,
-			game->image_buffer.height);
+	int	width;
+	int	height;
+
+	width = 1600;
+	height = 900;
+	game->image_buffer.img = mlx_new_image(game->mlx, width, height);
 	game->image_buffer.addr = mlx_get_data_addr(game->image_buffer.img,
 			&game->image_buffer.bits_per_pixel, &game->image_buffer.line_length,
 			&game->image_buffer.endian);
 	draw_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->image_buffer.img, 0, 0);
+	mlx_destroy_image(game->mlx, game->image_buffer.img);
 	return (EXIT_SUCCESS);
 }
 
