@@ -14,9 +14,18 @@
 
 int	loop(t_game *game)
 {
-	draw_background(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->image_b.img, 0,
-		0);
+	int	width;
+	int	height;
+
+	width = 1600;
+	height = 900;
+	game->image_buffer.img = mlx_new_image(game->mlx, width, height);
+	game->image_buffer.addr = mlx_get_data_addr(game->image_buffer.img,
+			&game->image_buffer.bits_per_pixel, &game->image_buffer.line_length,
+			&game->image_buffer.endian);
+	draw_minimap(game);
+	mlx_put_image_to_window(game->mlx, game->win, game->image_buffer.img, 0, 0);
+	mlx_destroy_image(game->mlx, game->image_buffer.img);
 	return (EXIT_SUCCESS);
 }
 
@@ -24,6 +33,14 @@ int	keypress(int keycode, t_game *game)
 {
 	if (keycode == ESC_KEY)
 		return (quit());
+	if (keycode == LETTER_KEY_UP)
+		game->player->pos->y = game->player->pos->y - 0.039;
+	if (keycode == LETTER_KEY_DOWN)
+		game->player->pos->y = game->player->pos->y + 0.039;
+	if (keycode == LETTER_KEY_LEFT)
+		game->player->pos->x = game->player->pos->x - 0.039;
+	if (keycode == LETTER_KEY_RIGHT)
+		game->player->pos->x = game->player->pos->x + 0.039;
 	return (0);
 }
 
