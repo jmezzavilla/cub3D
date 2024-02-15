@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:32:15 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/06 18:45:05 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:17:21 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <time.h>
-# include <unistd.h>
 
 typedef struct s_coord
 {
@@ -63,45 +62,37 @@ typedef struct s_buffer
 	int			height;
 }				t_buffer;
 
-typedef struct s_color
-{
-	int			red;
-	int			green;
-	int			blue;
-	int			code_rgb;
-}				t_color;
-
-typedef struct s_scene
+typedef struct s_sprites
 {
 	t_buffer	minimap_wall;
 	t_buffer	minimap_floor;
-	t_buffer	text_no;
-	t_buffer	text_so;
-	t_buffer	text_we;
-	t_buffer	text_ea;
-	t_color		color_f;
-	t_color		color_c;
-}				t_scene;
+}				t_sprites;
 
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	t_coord		win_size;
+	t_coord		pos;
+	float		angle;
 	t_file		*file;
-	t_buffer	image_buffer;
+	t_buffer	image_b;
 	char		**map;
 	char		**map_checker;
 	t_player	*player;
 	int			nbr_player;
-	t_scene		*scene;
+	t_sprites	*sprites;
 }				t_game;
+
+// hook
+int				quit(void);
 
 // build_structure
 t_game			*gm(void);
 void			build(char *map_path);
 void			build_file(char *map_path);
 void			build_characters(void);
-void			build_scene(void);
+void			build_sprites(void);
 
 // msg
 void			error_msg(char *message);
@@ -123,8 +114,18 @@ t_coord			*build_coord(double y, double x);
 void			hook(void);
 
 // draw
-void			draw_minimap(t_game *game);
+void			draw_background(t_game *game);
 void			draw(int x, int y, t_buffer *sprite, t_game *game);
 void			put_pixel(t_buffer *img, int x, int y, int color);
+
+
+/* FUNCTIONS */
+int		argb(double a, int r, int g, int b);
+void	put_line(t_buffer *image, int x1, int y1, int x2, int y2, int color);
+void	put_square(t_buffer *image, int x1, int y1, int x2, int y2, 
+		int just_perimeter, int color);
+void	create_image(int width, int height, int color, t_buffer *image);
+int		key_hook(int keycode);
+void	cub3d_init(void);
 
 #endif
