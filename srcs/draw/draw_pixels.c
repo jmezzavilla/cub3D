@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_pixels.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:27:08 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/02 20:55:58 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/03 19:14:43 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw(int x, int y, t_buffer *sprite, t_game *game)
 		while (sprite_x < sprite->width)
 		{
 			color = get_pixel_color(sprite, sprite_x, sprite_y);
-			put_pixel(&game->image_buffer, x + sprite_x, y + sprite_y, color);
+			put_pixel(&game->image_b, x + sprite_x, y + sprite_y, color);
 			sprite_x++;
 		}
 		sprite_y++;
