@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/15 16:56:18 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:45:31 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ int	keypress(int keycode, t_game *game)
 {
 	if (keycode == ESC_KEY)
 		return (quit());
-	if (keycode == LETTER_KEY_UP)
+	if (keycode == UP_KEY)
 		game->player->pos->y = game->player->pos->y - 0.039;
-	if (keycode == LETTER_KEY_DOWN)
+	if (keycode == DOWN_KEY)
 		game->player->pos->y = game->player->pos->y + 0.039;
-	if (keycode == LETTER_KEY_LEFT)
+	if (keycode == LEFT_KEY)
 		game->player->pos->x = game->player->pos->x - 0.039;
-	if (keycode == LETTER_KEY_RIGHT)
+	if (keycode == RIGHT_KEY)
 		game->player->pos->x = game->player->pos->x + 0.039;
 	return (0);
 }
@@ -47,7 +47,7 @@ int	keypress(int keycode, t_game *game)
 int quit(void)
 {
 	prt("Fim\n");
-	mlx_destroy_image(gm()->mlx, gm()->image_b.img);
+	mlx_destroy_image(gm()->mlx, gm()->image_buffer.img);
 	mlx_destroy_window(gm()->mlx, gm()->win);
 	mlx_destroy_display(gm()->mlx);
 	free(gm()->mlx);
