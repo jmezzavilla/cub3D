@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:31 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/06 13:22:37 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/02 21:54:13 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	check_floodfill(char **map)
 
 /*void print_map(char **map)
 {
+	int	y;
+	int	x;
 	int	x;
 	int	size_x;
 	int	y;

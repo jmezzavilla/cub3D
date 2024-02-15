@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:03 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/06 13:07:18 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/02 21:51:35 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	is_map(char *line)
 	return (true);
 }
 
-char	*put_elm(char *result, char *cur)
+char	*put_elements(char *result, char *cur)
 {
 	if (cur)
 		error_msg("More than one texture/color");
@@ -36,29 +36,28 @@ char	*put_elm(char *result, char *cur)
 void	read_elements(char *line)
 {
 	char	*result;
+	char	**sp;
+	size_t	i;
 	size_t	idxn;
 
-	result = ft_strdup(line);
+	sp = ft_split(line, ' ');
+	i = ft_strlen_matrix(sp);
+	result = ft_strdup(sp[i - 1]);
 	idxn = ft_strlen(result);
 	result[idxn - 1] = '\0';
-	if (!ft_strncmp(result, "NO", 2))
-		(gm()->file->path_no) = put_elm(ft_strchr(result, ' ') + 1,
-				gm()->file->path_no);
-	else if (!ft_strncmp(result, "SO", 2))
-		(gm()->file->path_so) = put_elm(ft_strchr(result, ' ') + 1,
-				gm()->file->path_so);
-	else if (!ft_strncmp(result, "WE", 2))
-		(gm()->file->path_we) = put_elm(ft_strchr(result, ' ') + 1,
-				gm()->file->path_we);
-	else if (!ft_strncmp(result, "EA", 2))
-		(gm()->file->path_ea) = put_elm(ft_strchr(result, ' ') + 1,
-				gm()->file->path_ea);
-	else if (!ft_strncmp(result, "F", 1))
-		(gm()->file->color_f) = put_elm(ft_strchr(result, ' ') + 1,
-				gm()->file->color_f);
-	else if (!ft_strncmp(result, "C", 1))
-		(gm()->file->color_c) = put_elm(ft_strchr(result, ' ') + 1,
-				gm()->file->color_c);
+	if (!ft_strcmp(sp[0], "NO"))
+		(gm()->file->path_no) = put_elements(result, gm()->file->path_no);
+	else if (!ft_strcmp(sp[0], "SO"))
+		(gm()->file->path_so) = put_elements(result, gm()->file->path_so);
+	else if (!ft_strcmp(sp[0], "WE"))
+		(gm()->file->path_we) = put_elements(result, gm()->file->path_we);
+	else if (!ft_strcmp(sp[0], "EA"))
+		(gm()->file->path_ea) = put_elements(result, gm()->file->path_ea);
+	else if (!ft_strcmp(sp[0], "F"))
+		(gm()->file->color_f) = put_elements(result, gm()->file->color_f);
+	else if (!ft_strcmp(sp[0], "C"))
+		(gm()->file->color_c) = put_elements(result, gm()->file->color_c);
+	ft_cleanup_strs(sp);
 }
 
 void	read_file(int fd)
@@ -76,8 +75,6 @@ void	read_file(int fd)
 			break ;
 		if (is_map(line) || map)
 		{
-			if (!is_map(line))
-				error_msg("Invalid characters map");
 			ft_lstadd_back(&gm()->file->map_lst, ft_lstnew(line));
 			map = true;
 		}

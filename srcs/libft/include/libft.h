@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 12:03:59 by jealves-          #+#    #+#             */
-/*   Updated: 2024/01/29 12:19:32 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/03 11:38:29 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+int					dprt(int fd, const char *format, ...);
+void				ft_dputchar_c(char c, long *ptr, int fd);
+void				ft_dputstr_c(char *s, long *ptr, int fd);
+void				ft_dputnbr_c(long n, long *ptr, int fd);
 
 size_t				ft_strlen(const char *str);
 size_t				ft_strlen_nl(const char *s);
