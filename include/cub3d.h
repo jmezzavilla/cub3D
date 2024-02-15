@@ -120,6 +120,7 @@ void			put_pixel(t_buffer *img, int x, int y, int color);
 
 
 /* FUNCTIONS */
+void	draw_minimap(t_game *game);
 int		argb(double a, int r, int g, int b);
 void	put_line(t_buffer *image, int x1, int y1, int x2, int y2, int color);
 void	put_square(t_buffer *image, int x1, int y1, int x2, int y2, 
@@ -127,5 +128,5 @@ void	put_square(t_buffer *image, int x1, int y1, int x2, int y2,
 void	create_image(int width, int height, int color, t_buffer *image);
 int		key_hook(int keycode);
 void	cub3d_init(void);
-void	draw_minimap(t_game *game);
+
 #endif
