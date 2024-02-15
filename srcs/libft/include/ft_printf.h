@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 22:29:42 by jealves-          #+#    #+#             */
-/*   Updated: 2024/01/29 21:18:38 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/03 11:35:19 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define HEXA_UPPER "0123456789ABCDEF"
 # define DECIMAL "0123456789"
 
-int	ft_printf(const char *str, ...);
+int	prt(const char *str, ...);
 int	ft_putchar(char c);
 int	ft_putstr(char *str);
 int	ft_putpointer(unsigned long int n);

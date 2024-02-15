@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:30:46 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/06 13:15:11 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/02 21:59:24 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	build_characters(void)
 				|| gm()->map[y][x] == 'E' || gm()->map[y][x] == 'W')
 			{
 				build_player(&gm()->player, x, y, gm()->map[y][x]);
-				gm()->nbr_player++;
+				gm()->nbr_player++;	
 			}
 			x++;
 		}

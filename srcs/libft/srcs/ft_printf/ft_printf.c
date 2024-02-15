@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 22:28:18 by jealves-          #+#    #+#             */
-/*   Updated: 2023/09/14 22:28:22 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/03 11:35:19 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_check_format(char format, va_list args)
 	return (count);
 }
 
-int	ft_printf(const char *str, ...)
+int	prt(const char *str, ...)
 {
 	va_list	args;
 	size_t	count;
