@@ -3,17 +3,17 @@ RED		= \033[1;31m
 GREEN	= \033[1;32m
 YELLOW	= \033[1;33m
 BLUE	= \033[1;34m
-CYAN	= \033[1;36m
+CYAN 	= \033[1;36m
 
 RM		= rm -f
-NAME	= cub3D
+NAME = cub3d
 INCLUDES = include
 
 # Contains the X11 and MLX header files
 INCLUDES_MLX = -I/usr/include -Imlx
 
 # Link X11 and MLX
-MLX_DIR = ./mlx
+MLX_DIR = ../mlx
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
 
@@ -28,12 +28,10 @@ SRCDIR	= srcs
 OBJDIR	= objs
 
 SRC =		cub3d.c\
-			mlx_utils.c\
-			raycast.c\
 			build/game.c\
 			build/characters.c\
 			build/file.c\
-			build/sprites.c\
+			build/scene.c\
 			utils/msg.c\
 			utils/clean.c\
 			utils/utils.c\

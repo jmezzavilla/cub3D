@@ -82,9 +82,6 @@ SRCS = \
    utils/ft_swap.c\
    utils/ft_isnumber.c\
    \
-   ft_dprintf/ft_dprintf.c\
-   ft_dprintf/ft_dprintf_utils.c\
-   \
    ft_printf/ft_printf.c\
    ft_printf/ft_printf_utils.c\
    ft_printf/ft_putchar.c\
