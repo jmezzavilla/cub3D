@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:32:15 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/15 17:45:31 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:08:13 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_game
 	void		*win;
 	t_coord		win_size;
 	t_coord		pos;
+	t_coord		map_size;
 	float		angle;
 	t_file		*file;
 	t_buffer	image_buffer;

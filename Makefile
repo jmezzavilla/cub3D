@@ -76,7 +76,7 @@ fclean:	clean
 
 re:	fclean all
 
-ARGS = maps/map_subject.cub
+ARGS = maps/simple_map.cub
 
 run: ${NAME}
 	@clear

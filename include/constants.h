@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:36:39 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/15 15:44:22 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:12:04 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,9 @@
 # define RIGHT_KEY 65363
 # define ESC_KEY 65307
 
-// # ifdef M_PI
-#  define M_PI 3.14159265358979323846	/* pi */
-// # endif
+# define M_PI 3.14159265358979323846	/* pi */
+# define M_PI_2 1.57079632679489661923	/* pi/2 */
 
-# ifndef M_PI_2
-#  define M_PI_2 1.57079632679489661923	/* pi/2 */
-# endif
+#define blockSize 40
 
 #endif
