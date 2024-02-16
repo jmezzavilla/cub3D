@@ -76,17 +76,19 @@ fclean:	clean
 
 re:	fclean all
 
+ARGS = maps/map_subject.cub
+
 run: ${NAME}
 	@clear
-	@./${NAME}
+	@./${NAME} ${ARGS}
 
 VALG	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes# --trace-children=yes
 
-v: ${NAME}
-	@${VALG} ./${NAME}
+v: re
+	@${VALG} ./${NAME} ${ARGS}
 
-val: ${NAME}
-	@output=$$(${VALG} ./${NAME} 2>&1); \
+val: re
+	@output=$$(${VALG} ./${NAME} ${ARGS} 2>&1); \
 	if echo "$$output" | grep -q 'freed' && echo "$$output" | grep -q '0 errors' ; then\
 		echo -n "$(GREEN)"; echo "$$output" | grep -E 'freed|total|ERROR S|file descriptor' | sed 's/^[^ ]* //';\
 	else\

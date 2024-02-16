@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:32:15 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/15 16:17:21 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:45:31 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_game
 	t_coord		pos;
 	float		angle;
 	t_file		*file;
-	t_buffer	image_b;
+	t_buffer	image_buffer;
 	char		**map;
 	char		**map_checker;
 	t_player	*player;
@@ -120,6 +120,7 @@ void			put_pixel(t_buffer *img, int x, int y, int color);
 
 
 /* FUNCTIONS */
+void	draw_minimap(t_game *game);
 int		argb(double a, int r, int g, int b);
 void	put_line(t_buffer *image, int x1, int y1, int x2, int y2, int color);
 void	put_square(t_buffer *image, int x1, int y1, int x2, int y2, 
