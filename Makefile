@@ -57,7 +57,7 @@ $(LIB): | $(OBJDIR)
 
 $(NAME): $(LIB) $(OBJ)
 	@cc $(CFLAGS) $(OBJ) $(LIB) -o $(NAME) $(MLX_FLAGS)
-	@echo "\n$(BLUE)$(NAME)$(END) $(GREEN)Stuff compiled 🛠️\n$(END)"
+	@echo "\n$(BLUE)$(NAME)$(END) $(GREEN)Stuff compiled 💻\n$(END)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR) $(LIB)
 	@mkdir -p $(@D)
