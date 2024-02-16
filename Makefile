@@ -22,18 +22,18 @@ OPTFLAGS    =  -march=native -ffast-math -funsafe-math-optimizations -ffinite-ma
 DIR_LIBFT = srcs/libft
 INCLUDE_LIB = $(DIR_LIBFT)/include
 LIB = $(DIR_LIBFT)/libft.a
-CFLAGS = -I$(INCLUDES) -I$(INCLUDE_LIB) -I $(MLX_DIR) -g #-Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -I$(INCLUDES) -I$(INCLUDE_LIB) -I $(MLX_DIR) -g -Wall -Wextra -Werror #-fsanitize=address
 
 SRCDIR	= srcs
 OBJDIR	= objs
 
 SRC =		cub3d.c\
 			mlx_utils.c\
-			raycast.c\
+			raycast_a.c\
 			build/game.c\
 			build/characters.c\
 			build/file.c\
-			build/sprites.c\
+			build/scene.c\
 			utils/msg.c\
 			utils/clean.c\
 			utils/utils.c\
@@ -43,6 +43,8 @@ SRC =		cub3d.c\
 			action/hook.c\
 			draw/draw_minimap.c\
 			draw/draw_pixels.c\
+			utils/destroy_game.c\
+			draw/raycast.c\
 
 SRC		:= $(addprefix srcs/,$(SRC))
 

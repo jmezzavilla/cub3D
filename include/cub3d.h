@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:32:15 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/15 17:45:31 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/16 21:20:56 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,21 @@ typedef struct s_player
 	t_coord		*plane;
 }				t_player;
 
+typedef struct s_raycast
+{
+	double perpWallDist;
+      //what direction to step in x or y-direction (either +1 or -1)
+	int stepX;
+	int stepY;
+	int side; //was a NS or a EW wall hit?
+	int			lineHeight;
+	t_coord		*map;
+	t_coord		*sideDist;
+	t_coord		*deltaDist;
+	t_coord		*dir;
+}				t_raycast;
+
+
 typedef struct s_buffer
 {
 	void		*img;
@@ -62,11 +77,23 @@ typedef struct s_buffer
 	int			height;
 }				t_buffer;
 
-typedef struct s_sprites
+typedef struct s_color
 {
-	t_buffer	minimap_wall;
-	t_buffer	minimap_floor;
-}				t_sprites;
+	int			red;
+	int			green;
+	int			blue;
+	int			code_rgb;
+}				t_color;
+
+typedef struct s_scene
+{
+	t_buffer	text_no;
+	t_buffer	text_so;
+	t_buffer	text_we;
+	t_buffer	text_ea;
+	t_color		color_f;
+	t_color		color_c;
+}				t_scene;
 
 typedef struct s_game
 {
@@ -81,7 +108,8 @@ typedef struct s_game
 	char		**map_checker;
 	t_player	*player;
 	int			nbr_player;
-	t_sprites	*sprites;
+	t_scene		*scene;
+	t_raycast	raycast;
 }				t_game;
 
 // hook
@@ -92,7 +120,7 @@ t_game			*gm(void);
 void			build(char *map_path);
 void			build_file(char *map_path);
 void			build_characters(void);
-void			build_sprites(void);
+void			build_scene(void);
 
 // msg
 void			error_msg(char *message);
@@ -117,6 +145,8 @@ void			hook(void);
 void			draw_background(t_game *game);
 void			draw(int x, int y, t_buffer *sprite, t_game *game);
 void			put_pixel(t_buffer *img, int x, int y, int color);
+int	get_pixel_color(t_buffer *sprite, int x, int y);
+
 
 
 /* FUNCTIONS */
@@ -128,5 +158,6 @@ void	put_square(t_buffer *image, int x1, int y1, int x2, int y2,
 void	create_image(int width, int height, int color, t_buffer *image);
 int		key_hook(int keycode);
 void	cub3d_init(void);
-
+void	end_game();
+void	raycast(t_game *game);
 #endif

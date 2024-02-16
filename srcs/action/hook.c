@@ -3,29 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/15 17:45:31 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/16 20:47:02 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+
+void	clear_screen(void)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (gm()->map[y])
+	{
+		x = 0;
+		while (gm()->map[y][x])
+		{
+			put_pixel(&gm()->image_buffer, x, y, 0x000000);
+			x++;
+		}
+		y++;
+	}
+}
+
 int	loop(t_game *game)
 {
-	int	width;
-	int	height;
-
-	width = 1600;
-	height = 900;
-	game->image_buffer.img = mlx_new_image(game->mlx, width, height);
-	game->image_buffer.addr = mlx_get_data_addr(game->image_buffer.img,
-			&game->image_buffer.bits_per_pixel, &game->image_buffer.line_length,
-			&game->image_buffer.endian);
+	clear_screen();
+	raycast(game);
 	draw_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->image_buffer.img, 0, 0);
-	mlx_destroy_image(game->mlx, game->image_buffer.img);
 	return (EXIT_SUCCESS);
 }
 
@@ -33,13 +45,13 @@ int	keypress(int keycode, t_game *game)
 {
 	if (keycode == ESC_KEY)
 		return (quit());
-	if (keycode == UP_KEY)
+	if (keycode == W_KEY)
 		game->player->pos->y = game->player->pos->y - 0.039;
-	if (keycode == DOWN_KEY)
+	if (keycode == S_KEY)
 		game->player->pos->y = game->player->pos->y + 0.039;
-	if (keycode == LEFT_KEY)
+	if (keycode == A_KEY)
 		game->player->pos->x = game->player->pos->x - 0.039;
-	if (keycode == RIGHT_KEY)
+	if (keycode == D_KEY)
 		game->player->pos->x = game->player->pos->x + 0.039;
 	return (0);
 }
@@ -47,16 +59,13 @@ int	keypress(int keycode, t_game *game)
 int quit(void)
 {
 	prt("Fim\n");
-	mlx_destroy_image(gm()->mlx, gm()->image_buffer.img);
-	mlx_destroy_window(gm()->mlx, gm()->win);
-	mlx_destroy_display(gm()->mlx);
-	free(gm()->mlx);
-	exit(0);
+	end_game();
+	return(0);
 }
 
 void	hook(void)
 {
-	mlx_hook(gm()->win, KeyPress, KeyPressMask, keypress, NULL);
+	mlx_hook(gm()->win, KeyPress, KeyPressMask, keypress, gm());
 	mlx_hook(gm()->win, 17, 0, quit, &gm);
 	//mlx_hook(gm()->window, 17, 0, closing_game, gm());
 	mlx_loop_hook(gm()->mlx, loop, gm());
