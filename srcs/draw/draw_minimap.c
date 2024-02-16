@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/15 17:45:31 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/16 21:27:23 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	get_color(char c)
 	if (c == '0')
 		color = 0xf0f8ff;
 	else if (c == '1')
-		color = 0x1E90FF;
+		color = gm()->scene->color_f.code_rgb;
 	else
-		color = 0;
+		color = gm()->scene->color_c.code_rgb;
 	return (color);
 }
 void	draw_player(t_game *data)
@@ -53,7 +53,7 @@ void	draw_player(t_game *data)
 		while (j < MINIMAP_PX / 2)
 		{
 			put_pixel(&data->image_buffer, (data->player->pos->x * MINIMAP_PX) + i,
-				(data->player->pos->y * MINIMAP_PX ) + j, 0xDC143C);
+				(data->player->pos->y * MINIMAP_PX ) + j, get_color('P'));
 			j++;
 		}
 		i++;

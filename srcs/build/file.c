@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:03 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/02 21:51:35 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:53:38 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,32 @@ char	*put_elements(char *result, char *cur)
 {
 	if (cur)
 		error_msg("More than one texture/color");
-	return (result);
+	return (ft_strdup(result));
 }
 
 void	read_elements(char *line)
 {
-	char	*result;
 	char	**sp;
 	size_t	i;
 	size_t	idxn;
 
 	sp = ft_split(line, ' ');
+	free(line);
 	i = ft_strlen_matrix(sp);
-	result = ft_strdup(sp[i - 1]);
-	idxn = ft_strlen(result);
-	result[idxn - 1] = '\0';
+	idxn = ft_strlen(sp[i - 1]);
+	sp[i - 1][idxn - 1] = '\0';
 	if (!ft_strcmp(sp[0], "NO"))
-		(gm()->file->path_no) = put_elements(result, gm()->file->path_no);
+		(gm()->file->path_no) = put_elements(sp[i - 1], gm()->file->path_no);
 	else if (!ft_strcmp(sp[0], "SO"))
-		(gm()->file->path_so) = put_elements(result, gm()->file->path_so);
+		(gm()->file->path_so) = put_elements(sp[i - 1], gm()->file->path_so);
 	else if (!ft_strcmp(sp[0], "WE"))
-		(gm()->file->path_we) = put_elements(result, gm()->file->path_we);
+		(gm()->file->path_we) = put_elements(sp[i - 1], gm()->file->path_we);
 	else if (!ft_strcmp(sp[0], "EA"))
-		(gm()->file->path_ea) = put_elements(result, gm()->file->path_ea);
+		(gm()->file->path_ea) = put_elements(sp[i - 1], gm()->file->path_ea);
 	else if (!ft_strcmp(sp[0], "F"))
-		(gm()->file->color_f) = put_elements(result, gm()->file->color_f);
+		(gm()->file->color_f) = put_elements(sp[i - 1], gm()->file->color_f);
 	else if (!ft_strcmp(sp[0], "C"))
-		(gm()->file->color_c) = put_elements(result, gm()->file->color_c);
+		(gm()->file->color_c) = put_elements(sp[i - 1], gm()->file->color_c);
 	ft_cleanup_strs(sp);
 }
 
