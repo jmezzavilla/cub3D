@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:30:46 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/16 19:33:06 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/20 21:33:00 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	build_player(t_player **player, int x, int y, char c)
 	*player = ft_calloc(sizeof(t_player), 1);
 	if (!*player)
 		error_msg("Memory allocation - player");
-	(*player)->pos = build_coord((double)y, (double)x);
+	(*player)->pos = build_coord((double)y + 0.5, (double)x + 0.5);
 	if (c == 'N')
 	{
 		(*player)->dir = build_coord((double)-1, (double)0);

@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:17 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/16 19:27:28 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/20 23:25:55 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	check_last_column(char **map, int y)
 
 void	check_middle_line(char **map)
 {
-	//int	x;
 	int	y;
 
 	y = 0;

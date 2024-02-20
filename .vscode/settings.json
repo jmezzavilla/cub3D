@@ -48,6 +48,7 @@
         "ctime": "cpp",
         "sstream": "cpp",
         "fstream": "cpp",
-        "cub3d.h": "c"
+        "cub3d.h": "c",
+        "mlx_int.h": "c"
     }    
 }
