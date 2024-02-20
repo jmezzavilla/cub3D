@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:32:15 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 14:08:18 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:22:57 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,16 @@ typedef struct s_scene
 	t_color		color_c;
 }				t_scene;
 
+typedef struct s_controls
+{
+	int	up;
+	int	down;
+	int	left;
+	int	right;
+	int	rotate_left;
+	int	rotate_right;
+}				t_controls;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -110,6 +120,7 @@ typedef struct s_game
 	int			nbr_player;
 	t_scene		*scene;
 	t_raycast	raycast;
+	t_controls	controls;
 }				t_game;
 
 // hook
@@ -161,4 +172,17 @@ void	cub3d_init(void);
 void	end_game();
 void	raycast(t_game *game);
 int		quit_old(void);
+
+void	event_player(t_game *game);
+
+void	move_right(t_game *game, t_player *player);
+void	move_left(t_game *game, t_player *player);
+void	move_front(t_game *game, t_player *player);
+void	move_back(t_game *game, t_player *player);
+
+int	is_right_wall(t_game *game, t_player *player);
+int	is_left_wall(t_game *game, t_player *player);
+int	is_front_wall(t_game *game, t_player *player);
+int	is_back_wall(t_game *game, t_player *player);
+
 #endif
