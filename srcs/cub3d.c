@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:51 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 22:50:40 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/20 23:46:34 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int ac, char **av)
 	}
 	else
 	{
+		gm()->move_speed = 0.039;
 		if (ac == 2)
 			return (cub3d(av[1]));
 		else
