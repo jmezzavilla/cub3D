@@ -41,10 +41,13 @@ SRC =		cub3d.c\
 			checker/check_map.c\
 			checker/floodfill.c\
 			action/hook.c\
+			action/direction.c\
+			action/colision.c\
 			draw/draw_minimap.c\
 			draw/draw_pixels.c\
 			utils/destroy_game.c\
 			draw/raycast.c\
+			draw/draw_player.c\
 
 SRC		:= $(addprefix srcs/,$(SRC))
 

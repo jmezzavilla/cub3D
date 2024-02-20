@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:36:39 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/16 21:31:21 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:34:58 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define WIN_HEIGHT 900
 # define WIN_WIDTH 1600
 # define BLOCK_PIXEL 55
+# define MOVE 0.039
 
 # define W_KEY 119
 # define A_KEY 97
