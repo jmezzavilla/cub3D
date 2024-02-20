@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:36:39 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 15:22:34 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:12:26 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # define WIN_HEIGHT 900
 # define WIN_WIDTH 1600
 # define BLOCK_PIXEL 55
-# define MOVE 0.039
 
 # define W_KEY 119
 # define A_KEY 97
