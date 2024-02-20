@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 15:17:55 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:23:37 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	loop(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->image_buffer.img, 0, 0);
 	return (EXIT_SUCCESS);
 }
+double walkSpeed = 0.039;
 
 
 int	key_press(int key, t_game *data)

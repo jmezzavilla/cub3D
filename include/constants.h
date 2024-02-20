@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:36:39 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 12:34:58 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:22:34 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define DOWN_KEY 65364
 # define RIGHT_KEY 65363
 # define ESC_KEY 65307
+# define SHIFT_KEY 65505
 
 // # ifdef M_PI
 #  define M_PI 3.14159265358979323846	/* pi */

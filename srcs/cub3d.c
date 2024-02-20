@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:51 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/16 19:42:14 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:08:42 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av)
 		cub3d_init();
 		key_hook(0);
 		mlx_hook(gm()->win, KeyPress, KeyPressMask, key_hook, gm());
-		mlx_hook(gm()->win, 17, 0, quit, &gm);
+		mlx_hook(gm()->win, 17, 0, quit_old, NULL);
 		mlx_loop(gm()->mlx);
 	}
 	else

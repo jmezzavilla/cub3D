@@ -42,6 +42,8 @@ void	draw_wall(int x, int drawStart, int drawEnd, t_game *game)
         texPos += step;
         put_pixel(&game->image_buffer, x, i, get_pixel_color(&game->scene->text_ea, texX, texY));
 		i++;
+		// if (0 == i % 10)
+		// 	mlx_put_image_to_window(game->mlx, game->win, game->image_buffer.img, 0, 0);
     }
 }
 
