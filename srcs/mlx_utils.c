@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:46:19 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/15 16:17:10 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/20 23:08:41 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	my_mlx_pixel_put(t_buffer *image, int x, int y, int color)
 
 	if (x >= 0 && y >= 0 && x < image->width && y < image->height)
 	{
-		dst = image->addr 
-			+ (y * image->line_length + x * (image->bits_per_pixel / 8));
+		dst = image->addr + (y * image->line_length + x * (image->bits_per_pixel
+					/ 8));
 		*(unsigned int *)dst = color;
 	}
 	else
@@ -35,7 +35,7 @@ int	argb(double a, int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
-	// step recebe o valor absoluto da diferenca maior
+// step recebe o valor absoluto da diferenca maior
 void	put_line(t_buffer *image, int x1, int y1, int x2, int y2, int color)
 {
 	float	x;
@@ -65,7 +65,7 @@ void	put_line(t_buffer *image, int x1, int y1, int x2, int y2, int color)
 	}
 }
 
-void	put_square(t_buffer *image, int x1, int y1, int x2, int y2, 
+void	put_square(t_buffer *image, int x1, int y1, int x2, int y2,
 		int just_perimeter, int color)
 {
 	int	i;
@@ -90,13 +90,14 @@ void	put_square(t_buffer *image, int x1, int y1, int x2, int y2,
 
 void	create_image(int width, int height, int color, t_buffer *image)
 {
-	int is_perimeter;
+	int	is_perimeter;
+
 	image->width = width;
 	image->height = height;
 	image->img = mlx_new_image(gm()->mlx, image->width, image->height);
-	image->addr = mlx_get_data_addr(image->img, 
-			&image->bits_per_pixel, &image->line_length, 
-			&image->endian);
+	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel,
+			&image->line_length, &image->endian);
 	is_perimeter = (color == argb(0, 64, 64, 64));
-	put_square(image, 0, 0, image->width - 1, image->height - 1, is_perimeter, color);
+	put_square(image, 0, 0, image->width - 1, image->height - 1, is_perimeter,
+		color);
 }

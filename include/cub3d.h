@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:32:15 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 15:22:57 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/20 23:29:02 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,16 @@ typedef struct s_player
 
 typedef struct s_raycast
 {
-	double perpWallDist;
-      //what direction to step in x or y-direction (either +1 or -1)
-	int stepX;
-	int stepY;
-	int side; //was a NS or a EW wall hit?
-	int			lineHeight;
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			side;
+	int			line_height;
 	t_coord		*map;
-	t_coord		*sideDist;
-	t_coord		*deltaDist;
+	t_coord		*side_dist;
+	t_coord		*delta_dist;
 	t_coord		*dir;
 }				t_raycast;
-
 
 typedef struct s_buffer
 {
@@ -97,12 +95,12 @@ typedef struct s_scene
 
 typedef struct s_controls
 {
-	int	up;
-	int	down;
-	int	left;
-	int	right;
-	int	rotate_left;
-	int	rotate_right;
+	int			up;
+	int			down;
+	int			left;
+	int			right;
+	int			rotate_left;
+	int			rotate_right;
 }				t_controls;
 
 typedef struct s_game
@@ -156,33 +154,33 @@ void			hook(void);
 void			draw_background(t_game *game);
 void			draw(int x, int y, t_buffer *sprite, t_game *game);
 void			put_pixel(t_buffer *img, int x, int y, int color);
-int	get_pixel_color(t_buffer *sprite, int x, int y);
-
-
+int				get_pixel_color(t_buffer *sprite, int x, int y);
+void			clear_screen(void);
 
 /* FUNCTIONS */
-void	draw_minimap(t_game *game);
-int		argb(double a, int r, int g, int b);
-void	put_line(t_buffer *image, int x1, int y1, int x2, int y2, int color);
-void	put_square(t_buffer *image, int x1, int y1, int x2, int y2, 
-		int just_perimeter, int color);
-void	create_image(int width, int height, int color, t_buffer *image);
-int		key_hook(int keycode);
-void	cub3d_init(void);
-void	end_game();
-void	raycast(t_game *game);
-int		quit_old(void);
+void			draw_minimap(t_game *game);
+int				argb(double a, int r, int g, int b);
+void			put_line(t_buffer *image, int x1, int y1, int x2, int y2,
+					int color);
+void			put_square(t_buffer *image, int x1, int y1, int x2, int y2,
+					int just_perimeter, int color);
+void			create_image(int width, int height, int color, t_buffer *image);
+int				key_hook(int keycode);
+void			cub3d_init(void);
+void			end_game(void);
+void			raycast(t_game *game);
+int				quit_old(void);
 
-void	event_player(t_game *game);
+void			event_player(t_game *game);
 
-void	move_right(t_game *game, t_player *player);
-void	move_left(t_game *game, t_player *player);
-void	move_front(t_game *game, t_player *player);
-void	move_back(t_game *game, t_player *player);
+void			move_right(t_game *game, t_player *player);
+void			move_left(t_game *game, t_player *player);
+void			move_front(t_game *game, t_player *player);
+void			move_back(t_game *game, t_player *player);
 
-int	is_right_wall(t_game *game, t_player *player);
-int	is_left_wall(t_game *game, t_player *player);
-int	is_front_wall(t_game *game, t_player *player);
-int	is_back_wall(t_game *game, t_player *player);
+int				is_right_wall(t_game *game, t_player *player);
+int				is_left_wall(t_game *game, t_player *player);
+int				is_front_wall(t_game *game, t_player *player);
+int				is_back_wall(t_game *game, t_player *player);
 
 #endif

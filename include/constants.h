@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:36:39 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 15:22:34 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:56:00 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define MINIMAP_PX 16
 # define WIN_HEIGHT 900
 # define WIN_WIDTH 1600
-# define BLOCK_PIXEL 55
-# define MOVE 0.039
+# define BLOCK_PIXEL 128
+# define MOVE 0.025
 
 # define W_KEY 119
 # define A_KEY 97

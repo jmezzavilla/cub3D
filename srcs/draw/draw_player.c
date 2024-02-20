@@ -1,4 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_player.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/20 23:07:23 by jealves-          #+#    #+#             */
+/*   Updated: 2024/02/20 23:18:18 by jealves-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
+void	rotate_left(t_player *player)
+{
+	double	olddir_x;
+	double	oldplane_x;
+
+	olddir_x = player->dir->x;
+	oldplane_x = player->plane->x;
+	player->dir->x = player->dir->x * cos(-MOVE) - player->dir->y * sin(-MOVE);
+	player->dir->y = olddir_x * sin(-MOVE) + player->dir->y * cos(-MOVE);
+	player->plane->x = player->plane->x * cos(-MOVE) - player->plane->y
+		* sin(-MOVE);
+	player->plane->y = oldplane_x * sin(-MOVE) + player->plane->y * cos(-MOVE);
+}
+
+void	rotate_right(t_player *player)
+{
+	double	olddir_x;
+	double	oldplane_x;
+
+	olddir_x = player->dir->x;
+	oldplane_x = player->plane->x;
+	player->dir->x = player->dir->x * cos(MOVE) - player->dir->y * sin(MOVE);
+	player->dir->y = olddir_x * sin(MOVE) + player->dir->y * cos(MOVE);
+	player->plane->x = player->plane->x * cos(MOVE) - player->plane->y
+		* sin(MOVE);
+	player->plane->y = oldplane_x * sin(MOVE) + player->plane->y * cos(MOVE);
+}
 
 void	event_player(t_game *game)
 {
@@ -10,33 +50,8 @@ void	event_player(t_game *game)
 		move_left(game, game->player);
 	if (game->controls.right == D_KEY)
 		move_right(game, game->player);
-	if(game->controls.rotate_right == RIGHT_KEY)
-	
-	{
-		double	olddir_x;
-		double	oldplane_x;
-
-		olddir_x = game->player->dir->x;
-		oldplane_x = game->player->plane->x;
-		game->player->dir->x = game->player->dir->x * cos(MOVE) - game->player->dir->y * sin(MOVE);
-		game->player->dir->y = olddir_x * sin(MOVE) + game->player->dir->y * cos(MOVE);
-		game->player->plane->x = game->player->plane->x * cos(MOVE) \
-			- game->player->plane->y * sin(MOVE);
-		game->player->plane->y = oldplane_x * sin(MOVE) \
-			+ game->player->plane->y * cos(MOVE);
-	}
-	if(game->controls.rotate_left == LEFT_KEY)	
-	{
-		double	olddir_x;
-		double	oldplane_x;
-
-		olddir_x = game->player->dir->x;
-		oldplane_x = game->player->plane->x;
-		game->player->dir->x = game->player->dir->x * cos(-MOVE) - game->player->dir->y * sin(-MOVE);
-		game->player->dir->y = olddir_x * sin(-MOVE) + game->player->dir->y * cos(-MOVE);
-		game->player->plane->x = game->player->plane->x * cos(-MOVE) \
-			- game->player->plane->y * sin(-MOVE);
-		game->player->plane->y = oldplane_x * sin(-MOVE) \
-			+ game->player->plane->y * cos(-MOVE);
-	}
+	if (game->controls.rotate_right == RIGHT_KEY)
+		rotate_right(game->player);
+	if (game->controls.rotate_left == LEFT_KEY)
+		rotate_left(game->player);
 }

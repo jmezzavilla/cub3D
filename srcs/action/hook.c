@@ -6,31 +6,11 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 15:23:37 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/20 23:23:39 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
-void	clear_screen(void)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (gm()->map[y])
-	{
-		x = 0;
-		while (gm()->map[y][x])
-		{
-			put_pixel(&gm()->image_buffer, x, y, 0x000000);
-			x++;
-		}
-		y++;
-	}
-}
 
 int	loop(t_game *game)
 {
@@ -41,8 +21,6 @@ int	loop(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->image_buffer.img, 0, 0);
 	return (EXIT_SUCCESS);
 }
-double walkSpeed = 0.039;
-
 
 int	key_press(int key, t_game *data)
 {
@@ -80,11 +58,11 @@ int	key_release(int key, t_game *data)
 	return (EXIT_SUCCESS);
 }
 
-int quit(void)
+int	quit(void)
 {
 	prt("Fim\n");
 	end_game();
-	return(0);
+	return (0);
 }
 
 void	hook(void)
@@ -92,7 +70,6 @@ void	hook(void)
 	mlx_hook(gm()->win, KeyPress, KeyPressMask, key_press, gm());
 	mlx_hook(gm()->win, KeyRelease, KeyReleaseMask, key_release, gm());
 	mlx_hook(gm()->win, 17, 0, quit, &gm);
-	//mlx_hook(gm()->window, 17, 0, closing_game, gm());
 	mlx_loop_hook(gm()->mlx, loop, gm());
 	mlx_loop(gm()->mlx);
 }
