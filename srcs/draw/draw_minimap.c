@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 23:03:32 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 00:25:54 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int	get_color(char c)
 {
 	int	color;
 
-	if (c == '0')
+	if(c == ' ')
+		color = 0;
+	else if (c == '0')
 		color = 0xf0f8ff;
 	else if (c == '1')
 		color = gm()->scene->color_f.code_rgb;
