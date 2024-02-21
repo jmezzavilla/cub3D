@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:12:06 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 12:37:29 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:30:41 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	create_color(char *rgb, int *color)
 
 void	build_scene(void)
 {
-	gm()->scene = ft_calloc(sizeof(t_scene), 1);
+	(gm()->scene) = ft_calloc(sizeof(t_scene), 1);
 	create_color(gm()->file->color_c, &gm()->scene->color_c);
 	create_color(gm()->file->color_f, &gm()->scene->color_f);
 	create_sprites(gm()->file->path_no, &gm()->scene->text_no);

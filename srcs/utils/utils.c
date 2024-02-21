@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:47 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 12:37:41 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:24:58 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	is_map_char(char c)
 	return (false);
 }
 
-t_coord	*build_coord(double y, double x)
+t_coord	*set_coord(double y, double x)
 {
 	t_coord	*coord;
 

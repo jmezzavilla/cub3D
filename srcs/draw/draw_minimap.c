@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 12:20:51 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:30:54 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_color(char c)
 {
 	int	color;
 
-	if(c == ' ')
+	if (c == ' ')
 		color = 0;
 	else if (c == '0')
 		color = 0xf0f8ff;

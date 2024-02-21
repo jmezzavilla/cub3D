@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:36:39 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 23:44:42 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:37:08 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,5 @@
 # define RIGHT_KEY 65363
 # define ESC_KEY 65307
 # define SHIFT_KEY 65505
-
-// # ifdef M_PI
-#  define M_PI 3.14159265358979323846	/* pi */
-// # endif
-
-# ifndef M_PI_2
-#  define M_PI_2 1.57079632679489661923	/* pi/2 */
-# endif
 
 #endif

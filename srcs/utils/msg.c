@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:42 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 12:41:37 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:36:55 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,3 @@ void	error_msg(char *message)
 	end_game();
 	exit(EXIT_FAILURE);
 }
-

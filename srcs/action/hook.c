@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 12:19:04 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:28:21 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,13 @@ int	quit(void)
 
 void	hook(void)
 {
+	gm()->mouse_on = 1;
 	mlx_do_key_autorepeatoff(gm()->mlx);
+	mlx_mouse_hook(gm()->win, mouse_click, gm());
+	mlx_hook(gm()->win, 6, 1L << 6, mouse_move, gm());
 	mlx_hook(gm()->win, KeyPress, KeyPressMask, key_press, gm());
 	mlx_hook(gm()->win, KeyRelease, KeyReleaseMask, key_release, gm());
-	mlx_hook(gm()->win, 17, 0, quit, &gm);
+	mlx_hook(gm()->win, 17, 0, quit, gm());
 	mlx_loop_hook(gm()->mlx, loop, gm());
 	mlx_loop(gm()->mlx);
 }

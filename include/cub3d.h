@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:32:15 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 14:14:11 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:31:44 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,62 +105,82 @@ typedef struct s_game
 	char		**map_checker;
 	t_player	*player;
 	int			nbr_player;
+	int			mouse_on;
 	t_scene		*scene;
 	t_raycast	raycast;
 	t_controls	controls;
 }				t_game;
 
-// hook
-int				quit(void);
-
-// build_structure
+// cub3d
 t_game			*gm(void);
-void			build(char *map_path);
-void			build_file(char *map_path);
-void			build_characters(void);
-void			build_scene(void);
 
-// msg
-void			error_msg(char *message);
-void			ft_cleanup_strs(char **strs);
-
-// checker
-void			check(void);
-void			check_map(void);
-void			check_map_extension(char *map_path);
-void			floodfill(char **map);
-
-// util
-char			**convert_lst_to_char(t_list *lst);
-bool			is_map_char(char c);
-t_coord			*build_coord(double y, double x);
-
-// action
-void			hook(void);
-
-// draw
-void			draw_background(t_game *game);
-void			draw(int x, int y, t_buffer *sprite, t_game *game);
-void			put_pixel(t_buffer *img, int x, int y, int color);
-int				get_pixel_color(t_buffer *sprite, int x, int y);
-void			clear_screen(void);
-
-/* FUNCTIONS */
-int				argb(double a, int r, int g, int b);
-void			draw_minimap(t_game *game);
-void			end_game(void);
-void			raycast(t_game *game);
-
-void			event_player(t_game *game);
-
-void			move_right(t_game *game, t_player *player);
-void			move_left(t_game *game, t_player *player);
-void			move_front(t_game *game, t_player *player);
-void			move_back(t_game *game, t_player *player);
-
+/// action
+// colision
 int				is_right_wall(t_game *game, t_player *player);
 int				is_left_wall(t_game *game, t_player *player);
 int				is_front_wall(t_game *game, t_player *player);
 int				is_back_wall(t_game *game, t_player *player);
+// direction
+void			move_right(t_game *game, t_player *player);
+void			move_left(t_game *game, t_player *player);
+void			move_front(t_game *game, t_player *player);
+void			move_back(t_game *game, t_player *player);
+// hook
+int				quit(void);
+void			hook(void);
+// mouse
+int				mouse_click(int button, int m_x, int m_y, t_game *game);
+int				mouse_move(int m_x, int m_y, t_game *game);
+
+/// build
+// characters
+void			search_player(void);
+// file
+void			build_file(char *map_path);
+// game
+void			build(char *map_path);
+// scene
+void			build_scene(void);
+
+/// checker
+// check_map
+void			check_map(void);
+// check
+void			check_map_extension(char *map_path);
+void			check(void);
+// floodfill
+void			floodfill(char **map);
+
+/// draw
+// draw_minimap
+void			draw_minimap(t_game *game);
+// draw_pixels
+void			put_pixel(t_buffer *img, int x, int y, int color);
+int				get_pixel_color(t_buffer *sprite, int x, int y);
+void			draw(int x, int y, t_buffer *sprite, t_game *game);
+// draw_player
+void			rotate_left(t_player *player);
+void			rotate_right(t_player *player);
+void			event_player(t_game *game);
+// raycast_tex
+void			draw_wall(int x, int draw_start, int draw_end, t_game *game);
+void			paint_floor(int color, int x, int d_end, t_game *game);
+void			paint_ceiling(int color, int x, int d_start, t_game *game);
+// raycast
+void			raycast(t_game *game);
+
+/// utils
+// clean
+void			clear_screen(void);
+void			ft_cleanup_strs(char **strs);
+// destroy_game
+void			end_game(void);
+// msg
+void			error_msg(char *message);
+// utils
+char			**convert_lst_to_char(t_list *lst);
+bool			is_map_char(char c);
+t_coord			*set_coord(double y, double x);
+int				argb(double a, int r, int g, int b);
 
 #endif
