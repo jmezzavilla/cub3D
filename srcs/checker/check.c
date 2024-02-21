@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:26 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/02 21:58:44 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:47:35 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ void	check_file(t_file *file)
 		error_msg("Without ceiling color");
 	if (!file->color_f || !ft_strlen(file->color_f))
 		error_msg("Without floor color");
+	if (ft_strcmp(file->path_no, file->path_so) == 0 || ft_strcmp(file->path_no,
+			file->path_we) == 0 || ft_strcmp(file->path_no, file->path_ea) == 0
+		|| ft_strcmp(file->path_so, file->path_we) == 0
+		|| ft_strcmp(file->path_so, file->path_ea) == 0
+		|| ft_strcmp(file->path_we, file->path_ea) == 0)
+		error_msg("Repeated texture");
 }
 
 void	check(void)
