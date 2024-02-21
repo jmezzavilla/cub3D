@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:32:15 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 16:31:44 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:39:16 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_controls
 	int			right;
 	int			rotate_left;
 	int			rotate_right;
+	bool		minimap_view;
 }				t_controls;
 
 typedef struct s_game
@@ -116,15 +117,13 @@ t_game			*gm(void);
 
 /// action
 // colision
-int				is_right_wall(t_game *game, t_player *player);
-int				is_left_wall(t_game *game, t_player *player);
-int				is_front_wall(t_game *game, t_player *player);
-int				is_back_wall(t_game *game, t_player *player);
+void			check_colision(char **map, double x, double y, t_coord *pos);
+
 // direction
-void			move_right(t_game *game, t_player *player);
-void			move_left(t_game *game, t_player *player);
-void			move_front(t_game *game, t_player *player);
-void			move_back(t_game *game, t_player *player);
+void			move_right(char **map, t_player *player);
+void			move_left(char **map, t_player *player);
+void			move_front(char **map, t_player *player);
+void			move_back(char **map, t_player *player);
 // hook
 int				quit(void);
 void			hook(void);
@@ -171,6 +170,7 @@ void			raycast(t_game *game);
 
 /// utils
 // clean
+bool			is_map(char *line);
 void			clear_screen(void);
 void			ft_cleanup_strs(char **strs);
 // destroy_game

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 16:28:21 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:16:22 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,39 +22,41 @@ int	loop(t_game *game)
 	return (EXIT_SUCCESS);
 }
 
-int	key_press(int key, t_game *data)
+int	key_press(int key, t_game *game)
 {
 	if (key == W_KEY)
-		data->controls.up = W_KEY;
+		game->controls.up = W_KEY;
 	else if (key == S_KEY)
-		data->controls.down = S_KEY;
+		game->controls.down = S_KEY;
 	else if (key == A_KEY)
-		data->controls.left = A_KEY;
+		game->controls.left = A_KEY;
 	else if (key == D_KEY)
-		data->controls.right = D_KEY;
+		game->controls.right = D_KEY;
 	else if (key == LEFT_KEY)
-		data->controls.rotate_left = LEFT_KEY;
+		game->controls.rotate_left = LEFT_KEY;
 	else if (key == RIGHT_KEY)
-		data->controls.rotate_right = RIGHT_KEY;
+		game->controls.rotate_right = RIGHT_KEY;
+	else if (key == M_KEY)
+		game->controls.minimap_view = !game->controls.minimap_view;
 	else if (key == ESC_KEY)
 		return (quit());
 	return (EXIT_SUCCESS);
 }
 
-int	key_release(int key, t_game *data)
+int	key_release(int key, t_game *game)
 {
 	if (key == W_KEY)
-		data->controls.up = -1;
+		game->controls.up = -1;
 	else if (key == S_KEY)
-		data->controls.down = -1;
+		game->controls.down = -1;
 	else if (key == A_KEY)
-		data->controls.left = -1;
+		game->controls.left = -1;
 	else if (key == D_KEY)
-		data->controls.right = -1;
+		game->controls.right = -1;
 	else if (key == LEFT_KEY)
-		data->controls.rotate_left = -1;
+		game->controls.rotate_left = -1;
 	else if (key == RIGHT_KEY)
-		data->controls.rotate_right = -1;
+		game->controls.rotate_right = -1;
 	return (EXIT_SUCCESS);
 }
 
