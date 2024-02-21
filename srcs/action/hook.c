@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/15 17:45:31 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/20 23:46:21 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,70 @@
 
 int	loop(t_game *game)
 {
-	int	width;
-	int	height;
-
-	width = 1600;
-	height = 900;
-	game->image_buffer.img = mlx_new_image(game->mlx, width, height);
-	game->image_buffer.addr = mlx_get_data_addr(game->image_buffer.img,
-			&game->image_buffer.bits_per_pixel, &game->image_buffer.line_length,
-			&game->image_buffer.endian);
+	clear_screen();
+	event_player(game);
+	raycast(game);
 	draw_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->image_buffer.img, 0, 0);
-	mlx_destroy_image(game->mlx, game->image_buffer.img);
 	return (EXIT_SUCCESS);
 }
 
-int	keypress(int keycode, t_game *game)
+int	key_press(int key, t_game *data)
 {
-	if (keycode == ESC_KEY)
+	if (key == W_KEY)
+		data->controls.up = W_KEY;
+	else if (key == S_KEY)
+		data->controls.down = S_KEY;
+	else if (key == A_KEY)
+		data->controls.left = A_KEY;
+	else if (key == D_KEY)
+		data->controls.right = D_KEY;
+	else if (key == LEFT_KEY)
+		data->controls.rotate_left = LEFT_KEY;
+	else if (key == RIGHT_KEY)
+		data->controls.rotate_right = RIGHT_KEY;
+	else if (key == ESC_KEY)
 		return (quit());
-	if (keycode == UP_KEY)
-		game->player->pos->y = game->player->pos->y - 0.039;
-	if (keycode == DOWN_KEY)
-		game->player->pos->y = game->player->pos->y + 0.039;
-	if (keycode == LEFT_KEY)
-		game->player->pos->x = game->player->pos->x - 0.039;
-	if (keycode == RIGHT_KEY)
-		game->player->pos->x = game->player->pos->x + 0.039;
-	return (0);
+	else if (key == SHIFT_KEY)
+	{
+		if (data->move_speed == 0.039)
+			data->move_speed = 0.1;
+		else
+			data->move_speed = 0.039;
+	}
+	return (EXIT_SUCCESS);
 }
 
-int quit(void)
+int	key_release(int key, t_game *data)
+{
+	if (key == W_KEY)
+		data->controls.up = -1;
+	else if (key == S_KEY)
+		data->controls.down = -1;
+	else if (key == A_KEY)
+		data->controls.left = -1;
+	else if (key == D_KEY)
+		data->controls.right = -1;
+	else if (key == LEFT_KEY)
+		data->controls.rotate_left = -1;
+	else if (key == RIGHT_KEY)
+		data->controls.rotate_right = -1;
+	return (EXIT_SUCCESS);
+}
+
+int	quit(void)
 {
 	prt("Fim\n");
-	mlx_destroy_image(gm()->mlx, gm()->image_buffer.img);
-	mlx_destroy_window(gm()->mlx, gm()->win);
-	mlx_destroy_display(gm()->mlx);
-	free(gm()->mlx);
-	exit(0);
+	end_game();
+	return (0);
 }
 
 void	hook(void)
 {
-	mlx_hook(gm()->win, KeyPress, KeyPressMask, keypress, NULL);
+	mlx_do_key_autorepeatoff(gm()->mlx);
+	mlx_hook(gm()->win, KeyPress, KeyPressMask, key_press, gm());
+	mlx_hook(gm()->win, KeyRelease, KeyReleaseMask, key_release, gm());
 	mlx_hook(gm()->win, 17, 0, quit, &gm);
-	//mlx_hook(gm()->window, 17, 0, closing_game, gm());
 	mlx_loop_hook(gm()->mlx, loop, gm());
 	mlx_loop(gm()->mlx);
 }

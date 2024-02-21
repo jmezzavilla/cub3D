@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:51 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/16 18:27:42 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:55:37 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,25 @@ int	cub3d(char *map_path)
 
 int	main(int ac, char **av)
 {
-	int raycast = 1;
-	
+	int	raycast;
+
+	raycast = 0;
 	if (raycast)
 	{
 		// build(av[1]);
 		(void)ac;
 		(void)av;
+		// build(av[1]);
 		cub3d_init();
 		key_hook(0);
-		mlx_hook(gm()->win, KeyPress, KeyPressMask, key_hook, NULL);
-		mlx_hook(gm()->win, 17, 0, quit, &gm);
+		mlx_hook(gm()->win, KeyPress, KeyPressMask, key_hook, gm());
+		mlx_hook(gm()->win, 17, 0, quit_old, NULL);
 		mlx_loop(gm()->mlx);
 		// ft_cleanup_strs(gm()->map);
 	}
 	else
 	{
+		gm()->move_speed = 0.039;
 		if (ac == 2)
 			return (cub3d(av[1]));
 		else

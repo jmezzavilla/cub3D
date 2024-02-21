@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:32:15 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/16 15:08:13 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:55:26 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,19 @@ typedef struct s_player
 	t_coord		*plane;
 }				t_player;
 
+typedef struct s_raycast
+{
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			side;
+	int			line_height;
+	t_coord		*map;
+	t_coord		*side_dist;
+	t_coord		*delta_dist;
+	t_coord		*dir;
+}				t_raycast;
+
 typedef struct s_buffer
 {
 	void		*img;
@@ -62,11 +75,33 @@ typedef struct s_buffer
 	int			height;
 }				t_buffer;
 
-typedef struct s_sprites
+typedef struct s_color
 {
-	t_buffer	minimap_wall;
-	t_buffer	minimap_floor;
-}				t_sprites;
+	int			red;
+	int			green;
+	int			blue;
+	int			code_rgb;
+}				t_color;
+
+typedef struct s_scene
+{
+	t_buffer	text_no;
+	t_buffer	text_so;
+	t_buffer	text_we;
+	t_buffer	text_ea;
+	t_color		color_f;
+	t_color		color_c;
+}				t_scene;
+
+typedef struct s_controls
+{
+	int			up;
+	int			down;
+	int			left;
+	int			right;
+	int			rotate_left;
+	int			rotate_right;
+}				t_controls;
 
 typedef struct s_game
 {
@@ -82,7 +117,10 @@ typedef struct s_game
 	char		**map_checker;
 	t_player	*player;
 	int			nbr_player;
-	t_sprites	*sprites;
+	double		move_speed;
+	t_scene		*scene;
+	t_raycast	raycast;
+	t_controls	controls;
 }				t_game;
 
 // hook
@@ -93,7 +131,7 @@ t_game			*gm(void);
 void			build(char *map_path);
 void			build_file(char *map_path);
 void			build_characters(void);
-void			build_sprites(void);
+void			build_scene(void);
 
 // msg
 void			error_msg(char *message);
@@ -118,16 +156,33 @@ void			hook(void);
 void			draw_background(t_game *game);
 void			draw(int x, int y, t_buffer *sprite, t_game *game);
 void			put_pixel(t_buffer *img, int x, int y, int color);
-
+int				get_pixel_color(t_buffer *sprite, int x, int y);
+void			clear_screen(void);
 
 /* FUNCTIONS */
-void	draw_minimap(t_game *game);
-int		argb(double a, int r, int g, int b);
-void	put_line(t_buffer *image, int x1, int y1, int x2, int y2, int color);
-void	put_square(t_buffer *image, int x1, int y1, int x2, int y2, 
-		int just_perimeter, int color);
-void	create_image(int width, int height, int color, t_buffer *image);
-int		key_hook(int keycode);
-void	cub3d_init(void);
+void			draw_minimap(t_game *game);
+int				argb(double a, int r, int g, int b);
+void			put_line(t_buffer *image, int x1, int y1, int x2, int y2,
+					int color);
+void			put_square(t_buffer *image, int x1, int y1, int x2, int y2,
+					int just_perimeter, int color);
+void			create_image(int width, int height, int color, t_buffer *image);
+int				key_hook(int keycode);
+void			cub3d_init(void);
+void			end_game(void);
+void			raycast(t_game *game);
+int				quit_old(void);
+
+void			event_player(t_game *game);
+
+void			move_right(t_game *game, t_player *player);
+void			move_left(t_game *game, t_player *player);
+void			move_front(t_game *game, t_player *player);
+void			move_back(t_game *game, t_player *player);
+
+int				is_right_wall(t_game *game, t_player *player);
+int				is_left_wall(t_game *game, t_player *player);
+int				is_front_wall(t_game *game, t_player *player);
+int				is_back_wall(t_game *game, t_player *player);
 
 #endif

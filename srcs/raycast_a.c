@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   raycast_a.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:58:51 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/16 16:50:46 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:55:54 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-char worldMap[8][8] =
+#define mapWidth 8
+#define mapHeight 8
+#define screenWidth 640
+#define screenHeight 480
+#define blockSize 40
+// char worldMap[mapWidth][mapHeight] =
+// {
+//   {'1','1','1','1','1','1','1', 0},
+//   {'1','0','0','0','0','0','1', 0},
+//   {'1','0','0','0','0','0','1', 0},
+//   {'1','0','0','0','0','0','1', 0},
+//   {'1','0','0','0','0','0','1', 0},
+//   {'1','0','0','0','0','0','1', 0},
+//   {'1','1','1','1','1','1','1', 0}
+// };
+int	quit_old(void)
 {
-  {'1','1','1','1','1','1','1','1'},
-  {'1','0','0','0','0','0','0','1'},
-  {'1','0','1','0','0','0','0','1'},
-  {'1','0','0','0','0','1','0','1'},
-  {'1','0','0','0','0','1','0','1'},
-  {'1','0','0','0','0','1','0','1'},
-  {'1','0','0','0','0','0','0','1'},
-  {'1','1','1','1','1','1','1','1'}
-};
+	prt("Fim\n");
+	mlx_destroy_image(gm()->mlx, gm()->image_buffer.img);
+	mlx_destroy_window(gm()->mlx, gm()->win);
+	mlx_destroy_display(gm()->mlx);
+	free(gm()->mlx);
+	exit(EXIT_SUCCESS);
+}
 
 void	draw_frame(void)
 {
@@ -60,7 +72,7 @@ int	key_hook(int keycode)
 {
 	int step = 10;
 	if (keycode == ESC_KEY || keycode == 'q')
-		return (quit());
+		return (quit_old());
 	if (keycode == W_KEY)
 		gm()->pos.y -= step;
 	else if (keycode == A_KEY)

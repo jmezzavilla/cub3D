@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/15 17:45:31 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 00:25:54 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,42 @@ void	draw_map(t_buffer *img, int x, int y, int color)
 		j = 0;
 		while (j < MINIMAP_PX)
 		{
-			put_pixel(img, (x * MINIMAP_PX) + i, (y * MINIMAP_PX) + j, color);
+			put_pixel(img, (x * MINIMAP_PX) + 2.5 + i, (y * MINIMAP_PX) + 2.5
+				+ j, color);
 			j++;
 		}
 		i++;
 	}
 }
+
 int	get_color(char c)
 {
 	int	color;
 
-	if (c == '0')
+	if(c == ' ')
+		color = 0;
+	else if (c == '0')
 		color = 0xf0f8ff;
 	else if (c == '1')
-		color = 0x1E90FF;
+		color = gm()->scene->color_f.code_rgb;
 	else
-		color = 0;
+		color = gm()->scene->color_c.code_rgb;
 	return (color);
 }
+
 void	draw_player(t_game *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < MINIMAP_PX / 2)
+	while (i < MINIMAP_PX / 2.5)
 	{
-		j = -1;
-		while (j < MINIMAP_PX / 2)
+		j = 0;
+		while (j < MINIMAP_PX / 2.5)
 		{
-			put_pixel(&data->image_buffer, (data->player->pos->x * MINIMAP_PX) + i,
-				(data->player->pos->y * MINIMAP_PX ) + j, 0xDC143C);
+			put_pixel(&data->image_buffer, (data->player->pos->x * MINIMAP_PX)
+				+ i, (data->player->pos->y * MINIMAP_PX) + j, get_color('P'));
 			j++;
 		}
 		i++;
@@ -74,7 +79,7 @@ void	draw_minimap(t_game *game)
 	{
 		x = 0;
 		size_x = ft_strlen(game->map[y]);
-		while (x < size_x)
+		while (x < size_x && game->map[y][x] != '\n')
 		{
 			color = get_color(game->map[y][x]);
 			if (color)

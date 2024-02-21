@@ -13,7 +13,7 @@ INCLUDES = include
 INCLUDES_MLX = -I/usr/include -Imlx
 
 # Link X11 and MLX
-MLX_DIR = ./mlx
+MLX_DIR = ../mlx
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
 
@@ -22,18 +22,18 @@ OPTFLAGS    =  -march=native -ffast-math -funsafe-math-optimizations -ffinite-ma
 DIR_LIBFT = srcs/libft
 INCLUDE_LIB = $(DIR_LIBFT)/include
 LIB = $(DIR_LIBFT)/libft.a
-CFLAGS = -I$(INCLUDES) -I$(INCLUDE_LIB) -I $(MLX_DIR) -g #-Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -I$(INCLUDES) -I$(INCLUDE_LIB) -I $(MLX_DIR) -g -Wall -Wextra -Werror #-fsanitize=address
 
 SRCDIR	= srcs
 OBJDIR	= objs
 
 SRC =		cub3d.c\
 			mlx_utils.c\
-			raycast.c\
+			raycast_a.c\
 			build/game.c\
 			build/characters.c\
 			build/file.c\
-			build/sprites.c\
+			build/scene.c\
 			utils/msg.c\
 			utils/clean.c\
 			utils/utils.c\
@@ -41,8 +41,13 @@ SRC =		cub3d.c\
 			checker/check_map.c\
 			checker/floodfill.c\
 			action/hook.c\
+			action/direction.c\
+			action/colision.c\
 			draw/draw_minimap.c\
 			draw/draw_pixels.c\
+			utils/destroy_game.c\
+			draw/raycast.c\
+			draw/draw_player.c\
 
 SRC		:= $(addprefix srcs/,$(SRC))
 
@@ -55,7 +60,7 @@ $(LIB): | $(OBJDIR)
 
 $(NAME): $(LIB) $(OBJ)
 	@cc $(CFLAGS) $(OBJ) $(LIB) -o $(NAME) $(MLX_FLAGS)
-	@echo "\n$(BLUE)$(NAME)$(END) $(GREEN)Stuff compiled 🛠️\n$(END)"
+	@echo "\n$(BLUE)$(NAME)$(END) $(GREEN)Stuff compiled 💻\n$(END)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR) $(LIB)
 	@mkdir -p $(@D)

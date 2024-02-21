@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msg.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:42 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/03 19:16:46 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/20 23:26:34 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	error_msg(char *message)
 {
 	dprt(2, "Error: %s\n", message);
-	// end_game(gm);
+	end_game();
 	exit(EXIT_FAILURE);
 }
 
