@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:12:06 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/16 20:21:49 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:30:41 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,12 @@ int	get_nbr(char *color)
 	return (nbr);
 }
 
-void	create_color(char *rgb, t_color *color)
+void	create_color(char *rgb, int *color)
 {
 	char	**split_rgb;
+	int		red;
+	int		green;
+	int		blue;
 
 	if (!rgb)
 		error_msg("Empty RGB");
@@ -60,17 +63,16 @@ void	create_color(char *rgb, t_color *color)
 		error_msg("Invalid RGB");
 	if (ft_strlen_matrix(split_rgb) != 3)
 		error_msg("Invalid color pattern");
-	color->red = get_nbr(ft_strtrim(split_rgb[0], " "));
-	color->green = get_nbr(ft_strtrim(split_rgb[1], " "));
-	color->blue = get_nbr(ft_strtrim(split_rgb[2], " "));
-	color->code_rgb = ((255 & 0xff << 24) + ((color->red & 0xff) << 16)
-			+ ((color->green & 0xff) << 8) + ((color->blue & 0xff)));
+	red = get_nbr(ft_strtrim(split_rgb[0], " "));
+	green = get_nbr(ft_strtrim(split_rgb[1], " "));
+	blue = get_nbr(ft_strtrim(split_rgb[2], " "));
+	*color = argb(0.1, red, green, blue);
 	ft_cleanup_strs(split_rgb);
 }
 
 void	build_scene(void)
 {
-	gm()->scene = ft_calloc(sizeof(t_scene), 1);
+	(gm()->scene) = ft_calloc(sizeof(t_scene), 1);
 	create_color(gm()->file->color_c, &gm()->scene->color_c);
 	create_color(gm()->file->color_f, &gm()->scene->color_f);
 	create_sprites(gm()->file->path_no, &gm()->scene->text_no);

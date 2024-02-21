@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 23:46:21 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:28:21 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ int	key_press(int key, t_game *data)
 		data->controls.rotate_right = RIGHT_KEY;
 	else if (key == ESC_KEY)
 		return (quit());
-	else if (key == SHIFT_KEY)
-	{
-		if (data->move_speed == 0.039)
-			data->move_speed = 0.1;
-		else
-			data->move_speed = 0.039;
-	}
 	return (EXIT_SUCCESS);
 }
 
@@ -74,10 +67,13 @@ int	quit(void)
 
 void	hook(void)
 {
+	gm()->mouse_on = 1;
 	mlx_do_key_autorepeatoff(gm()->mlx);
+	mlx_mouse_hook(gm()->win, mouse_click, gm());
+	mlx_hook(gm()->win, 6, 1L << 6, mouse_move, gm());
 	mlx_hook(gm()->win, KeyPress, KeyPressMask, key_press, gm());
 	mlx_hook(gm()->win, KeyRelease, KeyReleaseMask, key_release, gm());
-	mlx_hook(gm()->win, 17, 0, quit, &gm);
+	mlx_hook(gm()->win, 17, 0, quit, gm());
 	mlx_loop_hook(gm()->mlx, loop, gm());
 	mlx_loop(gm()->mlx);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 00:25:54 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:30:54 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ int	get_color(char c)
 {
 	int	color;
 
-	if(c == ' ')
+	if (c == ' ')
 		color = 0;
 	else if (c == '0')
 		color = 0xf0f8ff;
 	else if (c == '1')
-		color = gm()->scene->color_f.code_rgb;
+		color = gm()->scene->color_f;
 	else
-		color = gm()->scene->color_c.code_rgb;
+		color = gm()->scene->color_c;
 	return (color);
 }
 

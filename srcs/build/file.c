@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:03 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/16 19:53:38 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:29:39 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	read_file(int fd)
 	char	*line;
 	bool	map;
 
-	gm()->file = ft_calloc(sizeof(t_file), 1);
+	(gm()->file) = ft_calloc(sizeof(t_file), 1);
 	line = NULL;
 	map = false;
 	while (1)
