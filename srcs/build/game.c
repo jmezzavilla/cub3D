@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 16:35:02 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:26:32 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	build_mlx_itens(t_game *game)
 
 	width = 1600;
 	height = 900;
-	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, width, height, "cub3D");
 	game->image_buffer.img = mlx_new_image(game->mlx, width, height);
 	game->image_buffer.addr = mlx_get_data_addr(game->image_buffer.img,
@@ -41,8 +40,9 @@ void	build(char *map_path)
 {
 	build_file(map_path);
 	build_game();
-	search_player();
-	build_mlx_itens(gm());
+	build_player();
+	gm()->mlx = mlx_init();
 	build_scene();
 	check();
+	build_mlx_itens(gm());
 }

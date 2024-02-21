@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:32:15 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 16:31:44 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:51:22 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int				mouse_move(int m_x, int m_y, t_game *game);
 
 /// build
 // characters
-void			search_player(void);
+void			build_player(void);
 // file
 void			build_file(char *map_path);
 // game
@@ -174,7 +174,7 @@ void			raycast(t_game *game);
 void			clear_screen(void);
 void			ft_cleanup_strs(char **strs);
 // destroy_game
-void			end_game(void);
+void			end_game(int mode);
 // msg
 void			error_msg(char *message);
 // utils
