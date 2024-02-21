@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 23:46:21 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:19:04 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ int	key_press(int key, t_game *data)
 		data->controls.rotate_right = RIGHT_KEY;
 	else if (key == ESC_KEY)
 		return (quit());
-	else if (key == SHIFT_KEY)
-	{
-		if (data->move_speed == 0.039)
-			data->move_speed = 0.1;
-		else
-			data->move_speed = 0.039;
-	}
 	return (EXIT_SUCCESS);
 }
 

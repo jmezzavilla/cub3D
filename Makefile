@@ -13,7 +13,7 @@ INCLUDES = include
 INCLUDES_MLX = -I/usr/include -Imlx
 
 # Link X11 and MLX
-MLX_DIR = ../mlx
+MLX_DIR = ./mlx
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
 
@@ -28,8 +28,6 @@ SRCDIR	= srcs
 OBJDIR	= objs
 
 SRC =		cub3d.c\
-			mlx_utils.c\
-			raycast_a.c\
 			build/game.c\
 			build/characters.c\
 			build/file.c\
@@ -81,13 +79,16 @@ fclean:	clean
 
 re:	fclean all
 
-ARGS = maps/simple_map.cub
+ARGS = maps/map_subject.cub
 
 run: ${NAME}
 	@clear
 	@./${NAME} ${ARGS}
 
 VALG	= valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes# --trace-children=yes
+
+norm:
+	@norminette srcs include
 
 v: re
 	@${VALG} ./${NAME} ${ARGS}

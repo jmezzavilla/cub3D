@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:06:57 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 23:47:55 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:50:21 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,12 +134,16 @@ void	draw_raycast(int x, t_game *game)
 	if (draw_end < 0)
 		draw_end = 0;
 	draw_wall(x, draw_start, draw_end, game);
-	paint_floor(game->scene->color_f.code_rgb, x, draw_end, game);
-	paint_ceiling(game->scene->color_c.code_rgb, x, draw_start, game);
+	paint_floor(game->scene->color_f, x, draw_end, game);
+	paint_ceiling(game->scene->color_c, x, draw_start, game);
 }
-
+// normal comment
+//! from copilot
+/// from lodev
 void	calc_steps(t_game *game)
 {
+	// this calculates the distance from the starting
+	// point to the first line in the grid
 	if (game->raycast.dir->x < 0)
 	{
 		game->raycast.step_x = -1;
@@ -196,6 +200,10 @@ void	dda(t_game *game)
 	{
 		if (game->raycast.side_dist->x < game->raycast.side_dist->y)
 		{
+			//! This is done by repeatedly adding the distance the ray
+			//! travels in the x or y direction to the current
+			//! position of the ray, and checking whether the new
+			//! position is a wall.
 			game->raycast.side_dist->x += game->raycast.delta_dist->x;
 			game->raycast.map->x += game->raycast.step_x;
 			game->raycast.side = 0;
@@ -239,7 +247,12 @@ void	init_ray(t_game *game, int x)
 {
 	double	camera_x;
 
+	// x is for each column of the screen (0 to 1600)
+	// x / (double)WIN_WIDTH is a num from 0 to 1 that represents a num from 0 to 1600
+	// and then the (2 *) and the (-1) are to convert the scale 0 to 1 -> -1 to 1
 	camera_x = 2 * x / (double)WIN_WIDTH - 1;
+	//! game->player->plane->x is from -1 to 1
+	// this operation is to calculate the point here the ray is pointing
 	game->raycast.dir->x = game->player->dir->x + game->player->plane->x
 		* camera_x;
 	game->raycast.dir->y = game->player->dir->y + game->player->plane->y
@@ -252,6 +265,9 @@ void	init_ray(t_game *game, int x)
 	*/
 	game->raycast.map->x = (int)game->player->pos->x;
 	game->raycast.map->y = (int)game->player->pos->y;
+	/// the division through zero is avoided by setting it to a very high value:
+	/// 1e30 is an arbitrarily chosen high enough number
+	/// deltaDist is the length of ray from one x or y-side to next x or y-side
 	if (game->raycast.dir->x == 0)
 		game->raycast.delta_dist->x = 1e30;
 	else
@@ -283,6 +299,7 @@ void	raycast(t_game *game)
 		init_ray(game, x);
 		calc_steps(game);
 		dda(game);
+		//! raycast.side_dist are the distances that the ray has traveled in the x or y directions
 		if (game->raycast.side == 0)
 			game->raycast.perp_wall_dist = (game->raycast.side_dist->x
 					- game->raycast.delta_dist->x);

@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:32:15 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 14:55:26 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:14:11 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,22 +75,14 @@ typedef struct s_buffer
 	int			height;
 }				t_buffer;
 
-typedef struct s_color
-{
-	int			red;
-	int			green;
-	int			blue;
-	int			code_rgb;
-}				t_color;
-
 typedef struct s_scene
 {
 	t_buffer	text_no;
 	t_buffer	text_so;
 	t_buffer	text_we;
 	t_buffer	text_ea;
-	t_color		color_f;
-	t_color		color_c;
+	int			color_f;
+	int			color_c;
 }				t_scene;
 
 typedef struct s_controls
@@ -107,17 +99,12 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	t_coord		win_size;
-	t_coord		pos;
-	t_coord		map_size;
-	float		angle;
 	t_file		*file;
 	t_buffer	image_buffer;
 	char		**map;
 	char		**map_checker;
 	t_player	*player;
 	int			nbr_player;
-	double		move_speed;
 	t_scene		*scene;
 	t_raycast	raycast;
 	t_controls	controls;
@@ -136,7 +123,6 @@ void			build_scene(void);
 // msg
 void			error_msg(char *message);
 void			ft_cleanup_strs(char **strs);
-void			msg(const char *message);
 
 // checker
 void			check(void);
@@ -160,18 +146,10 @@ int				get_pixel_color(t_buffer *sprite, int x, int y);
 void			clear_screen(void);
 
 /* FUNCTIONS */
-void			draw_minimap(t_game *game);
 int				argb(double a, int r, int g, int b);
-void			put_line(t_buffer *image, int x1, int y1, int x2, int y2,
-					int color);
-void			put_square(t_buffer *image, int x1, int y1, int x2, int y2,
-					int just_perimeter, int color);
-void			create_image(int width, int height, int color, t_buffer *image);
-int				key_hook(int keycode);
-void			cub3d_init(void);
+void			draw_minimap(t_game *game);
 void			end_game(void);
 void			raycast(t_game *game);
-int				quit_old(void);
 
 void			event_player(t_game *game);
 

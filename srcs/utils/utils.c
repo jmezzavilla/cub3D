@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:47 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/02 20:34:49 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:37:41 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,13 @@ t_coord	*build_coord(double y, double x)
 	coord->x = x;
 	coord->y = y;
 	return (coord);
+}
+
+int	argb(double a, int r, int g, int b)
+{
+	a = 1 - a;
+	r *= a;
+	g *= a;
+	b *= a;
+	return (r << 16 | g << 8 | b);
 }

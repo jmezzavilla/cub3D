@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:24:12 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 23:51:45 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:35:20 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	destroy_game(t_game *game)
 		mlx_destroy_display(game->mlx);
 		ft_lstclear(&game->file->map_lst, clean_lst);
 		ft_cleanup_strs(game->map);
+		ft_cleanup_strs(game->map_checker);
 		destroy_player(game);
 		free(game->file->path_ea);
 		free(game->file->path_so);
@@ -46,7 +47,13 @@ void	destroy_game(t_game *game)
 		free(game->file->path_no);
 		free(game->file->color_c);
 		free(game->file->color_f);
-		free(game->mlx);	
+		free(game->scene);
+		free(game->file);
+		free(game->raycast.map);
+		free(game->raycast.side_dist);
+		free(game->raycast.delta_dist);
+		free(game->raycast.dir);
+		free(game->mlx);
 	}
 }
 
