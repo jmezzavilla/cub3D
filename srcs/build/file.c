@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:03 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 23:38:02 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:42:35 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*put_elements(char *result, char *cur)
 {
 	if (cur)
-		error_msg("More than one texture/color");
+		error_msg("More than one texture/color"); // 1... gm()->file + map_lst
 	return (ft_strdup(result));
 }
 
@@ -70,6 +70,8 @@ void	read_file(int fd)
 	char	*line;
 
 	(gm()->file) = ft_calloc(sizeof(t_file), 1);
+	if (!gm()->file)
+		error_msg("Memory allocation - file"); // 0 nothing
 	line = NULL;
 	map = false;
 	end = false;
@@ -89,11 +91,11 @@ void	build_file(char *map_path)
 	check_map_extension(map_path);
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
-		error_msg("File not found");
+		error_msg("File not found"); // 0 nothing
 	read_file(fd);
 	close(fd);
 	if (!gm()->file->map_lst)
-		error_msg("Cannot read map");
+		error_msg("Cannot read map"); // 2 gm()->file + map_lst + file stuff
 	gm()->map = convert_lst_to_char(gm()->file->map_lst);
 	gm()->map_checker = convert_lst_to_char(gm()->file->map_lst);
 }

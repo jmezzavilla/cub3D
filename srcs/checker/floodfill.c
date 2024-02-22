@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:31 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 23:19:20 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:48:10 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	check_floodfill(char **map)
 		while (x < size_x)
 		{
 			if (map[y][x] == 'I')
-				error_msg("Invalid map structure");
+				error_msg("Invalid map structure"); // 2/3...
 			x++;
 		}
 		y++;
