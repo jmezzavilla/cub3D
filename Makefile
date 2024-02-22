@@ -35,7 +35,7 @@ SRC =		cub3d.c\
 			utils/msg.c\
 			utils/clean.c\
 			utils/utils.c\
-			utils/destroy_game.c\
+			utils/free_game.c\
 			checker/check.c\
 			checker/check_map.c\
 			checker/floodfill.c\

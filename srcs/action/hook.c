@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 16:53:26 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:25:52 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	key_release(int key, t_game *game)
 int	quit(void)
 {
 	prt("\033[1;34mFim\033[0m\n");
-	end_game(gm());
+	free_game(gm());
 	exit(EXIT_SUCCESS);
 	return (0);
 }
