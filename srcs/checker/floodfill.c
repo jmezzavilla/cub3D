@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:31 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 15:55:55 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 20:01:14 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ void	floodfill(char **map)
 		size_x = ft_strlen(map[y]);
 		while (x < size_x)
 		{
-			if (map[y][x] == '0')
+			if (map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S'
+				|| map[y][x] == 'E' || map[y][x] == 'W')
 				fill(y, x, map, size_y);
 			x++;
 		}
