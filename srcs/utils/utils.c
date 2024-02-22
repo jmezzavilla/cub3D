@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:47 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 18:42:39 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:38:10 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**convert_lst_to_char(t_list *lst)
 	i = 0;
 	str = ft_calloc(ft_lstsize(lst) + 1, sizeof(char *));
 	if (!str)
-		error_msg("Memory allocation - lst"); // 2
+		error_msg("Memory allocation");
 	while (lst)
 	{
 		str[i] = ft_strdup(lst->content);

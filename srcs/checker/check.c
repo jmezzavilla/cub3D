@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:26 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 18:48:27 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:47:35 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ void	check_map_extension(char *map_path)
 
 	extension = ft_strchr(map_path, '.');
 	if (extension == NULL)
-		error_msg("Map extension invalid"); // 0 nothing
+		error_msg("Map extension invalid");
 	if (ft_strcmp(extension, ".cub") != 0)
-		error_msg("Map extension invalid"); // 0 nothing
+		error_msg("Map extension invalid");
 }
 
 void	check_file(t_file *file)
 {
 	if (!file)
-		error_msg("Cannot read file"); // 2/3...
+		error_msg("Cannot read file");
 	if (!file->path_no || !ft_strlen(file->path_no))
 		error_msg("Without NO texture");
 	if (!file->path_so || !ft_strlen(file->path_so))
@@ -52,5 +52,5 @@ void	check(void)
 	check_file(gm()->file);
 	check_map();
 	if (gm()->nbr_player != 1)
-		error_msg("Invalid number of players"); // 2/3...
+		error_msg("Invalid number of players");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_pixels.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:27:08 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 18:49:36 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/16 21:07:45 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	put_pixel(t_buffer *img, int x, int y, int color)
 	char	*dst;
 
 	if (x < 0 || y < 0 || x >= img->width || y >= img->height)
-		error_msg("Pixel"); // 4
+		error_msg("Pixel");
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }

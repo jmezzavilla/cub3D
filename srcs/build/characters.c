@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:30:46 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 18:43:06 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:57:33 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	set_player_dir(t_player **player, int x, int y, char c)
 {
 	*player = ft_calloc(sizeof(t_player), 1);
 	if (!*player)
-		error_msg("Memory allocation - player"); // 2/3
+		error_msg("Memory allocation - player");
 	(*player)->pos = set_coord((double)y + 0.5, (double)x + 0.5);
 	if (c == 'N')
 	{
@@ -40,7 +40,7 @@ void	set_player_dir(t_player **player, int x, int y, char c)
 	}
 }
 
-void	build_player(void)
+void	search_player(void)
 {
 	int	x;
 	int	y;
