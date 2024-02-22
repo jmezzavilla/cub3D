@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   direction.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:46:53 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 23:42:53 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:04:15 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// this functions moves the player in a direction by using plane/dir
 void	move_right(char **map, t_player *player)
 {
 	double	x;

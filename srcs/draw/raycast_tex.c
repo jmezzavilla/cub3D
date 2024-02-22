@@ -6,12 +6,13 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:50:36 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/21 15:56:43 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:32:20 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// floor makes 3.4 = 3
 double	get_wall_x(t_game *game)
 {
 	double	wall_x;
@@ -45,6 +46,17 @@ t_buffer	*get_texture_wall(t_game *game)
 	return (NULL);
 }
 
+/*
+wall_x = calculates the x-coordinate of the hit point on the wall
+tex.x = the x-coordinate of the texture pixel.
+step = how much to increase the texture coordinate per screen pixel
+the step size is the ratio of the texture height to the wall slice height
+tex_pos = initial texture position
+
+Cast the texture coordinate to integer,
+and protect with (texHeight - 1) in case of overflow
+		tex.y = (int)tex_pos & (BLOCK_PIXEL - 1);
+*/
 void	draw_wall(int x, int draw_start, int draw_end, t_game *game)
 {
 	int		i;

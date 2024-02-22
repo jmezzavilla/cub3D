@@ -6,15 +6,12 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:06:57 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 16:04:37 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:10:08 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// normal comment
-//! from copilot
-/// from lodev
 /*
 	// Calculate height of line to draw on screen
 	if (game->raycast.perp_wall_dist > 0)...

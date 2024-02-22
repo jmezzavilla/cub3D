@@ -6,12 +6,13 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:30:46 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 18:43:06 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:43:57 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// 0.66 is the value of the FOV
 void	set_player_dir(t_player **player, int x, int y, char c)
 {
 	*player = ft_calloc(sizeof(t_player), 1);

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:07:23 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 23:40:05 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:42:24 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// this functions rotate the player direction and plane using cos/sin
 void	rotate_left(t_player *player)
 {
 	double	olddir_x;
