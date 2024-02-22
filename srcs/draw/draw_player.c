@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:07:23 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 23:46:50 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:40:05 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void	rotate_right(t_player *player)
 void	event_player(t_game *game)
 {
 	if (game->controls.up == W_KEY)
-		move_front(game, game->player);
+		move_front(game->map, game->player);
 	if (game->controls.down == S_KEY)
-		move_back(game, game->player);
+		move_back(game->map, game->player);
 	if (game->controls.left == A_KEY)
-		move_left(game, game->player);
+		move_left(game->map, game->player);
 	if (game->controls.right == D_KEY)
-		move_right(game, game->player);
+		move_right(game->map, game->player);
 	if (game->controls.rotate_right == RIGHT_KEY)
 		rotate_right(game->player);
 	if (game->controls.rotate_left == LEFT_KEY)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 15:30:54 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:39:55 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	draw_minimap(t_game *game)
 	int	color;
 
 	y = 0;
+	if (!game->controls.minimap_view)
+		return ;
 	size_y = ft_strlen_matrix(game->map);
 	while (y < size_y)
 	{

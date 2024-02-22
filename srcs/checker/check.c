@@ -39,6 +39,12 @@ void	check_file(t_file *file)
 		error_msg("Without ceiling color");
 	if (!file->color_f || !ft_strlen(file->color_f))
 		error_msg("Without floor color");
+	if (ft_strcmp(file->path_no, file->path_so) == 0 || ft_strcmp(file->path_no,
+			file->path_we) == 0 || ft_strcmp(file->path_no, file->path_ea) == 0
+		|| ft_strcmp(file->path_so, file->path_we) == 0
+		|| ft_strcmp(file->path_so, file->path_ea) == 0
+		|| ft_strcmp(file->path_we, file->path_ea) == 0)
+		error_msg("Repeated texture");
 }
 
 void	check(void)

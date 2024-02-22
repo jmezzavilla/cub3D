@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:03 by jealves-          #+#    #+#             */
 /*   Updated: 2024/02/21 18:42:35 by analexan         ###   ########.fr       */
@@ -11,20 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-bool	is_map(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (!ft_strchr("01NSEW\t\n ", line[i]) || (i == 0 && line[i] == '\n'))
-			return (false);
-		i++;
-	}
-	return (true);
-}
 
 char	*put_elements(char *result, char *cur)
 {
@@ -59,28 +45,42 @@ void	read_elements(char *line)
 	ft_cleanup_strs(sp);
 }
 
+void	read_get_next_line(char *line, bool *map, bool *end)
+{
+	if ((is_map(line) || *map))
+	{
+		if (ft_strcmp(line, "\n") && ft_strchr(line, '1'))
+		{
+			if (*end)
+				error_msg("Invalid structure map");
+			ft_lstadd_back(&gm()->file->map_lst, ft_lstnew(line));
+		}
+		else
+			*end = true;
+		*map = true;
+	}
+	else
+		read_elements(line);
+}
+
 void	read_file(int fd)
 {
-	char	*line;
 	bool	map;
+	bool	end;
+	char	*line;
 
 	(gm()->file) = ft_calloc(sizeof(t_file), 1);
 	if (!gm()->file)
 		error_msg("Memory allocation - file"); // 0 nothing
 	line = NULL;
 	map = false;
+	end = false;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (is_map(line) || map)
-		{
-			ft_lstadd_back(&gm()->file->map_lst, ft_lstnew(line));
-			map = true;
-		}
-		else
-			read_elements(line);
+		read_get_next_line(line, &map, &end);
 	}
 }
 

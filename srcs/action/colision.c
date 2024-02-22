@@ -6,48 +6,50 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:46:44 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/20 23:45:32 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:39:46 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_right_wall(t_game *game, t_player *player)
+int	is_wall(char **map, t_coord *pos)
 {
 	int	y;
 	int	x;
 
-	y = player->pos->y + (player->dir->x * MOVE);
-	x = player->pos->x - (player->dir->y * MOVE);
-	return (game->map[y][x] == '1');
+	y = pos->y - WALL_DISTANCE;
+	x = pos->x - WALL_DISTANCE;
+	if (map[y][x] == '1')
+		return (true);
+	y = pos->y - WALL_DISTANCE;
+	x = pos->x + WALL_DISTANCE;
+	if (map[y][x] == '1')
+		return (true);
+	y = pos->y + WALL_DISTANCE;
+	x = pos->x - WALL_DISTANCE;
+	if (map[y][x] == '1')
+		return (true);
+	y = pos->y + WALL_DISTANCE;
+	x = pos->x + WALL_DISTANCE;
+	if (map[y][x] == '1')
+		return (true);
+	return (false);
 }
 
-int	is_left_wall(t_game *game, t_player *player)
+void	check_colision(char **map, double x, double y, t_coord *pos)
 {
-	int	y;
-	int	x;
+	double	temp;
 
-	y = player->pos->y - (player->dir->x * MOVE);
-	x = player->pos->x + (player->dir->y * MOVE);
-	return (game->map[y][x] == '1');
-}
-
-int	is_front_wall(t_game *game, t_player *player)
-{
-	int	y;
-	int	x;
-
-	y = player->pos->y + (player->dir->y * MOVE);
-	x = player->pos->x + (player->dir->x * MOVE);
-	return (game->map[y][x] == '1');
-}
-
-int	is_back_wall(t_game *game, t_player *player)
-{
-	int	y;
-	int	x;
-
-	y = player->pos->y - (player->dir->y * MOVE);
-	x = player->pos->x - (player->dir->x * MOVE);
-	return (game->map[y][x] == '1');
+	if (!is_wall(map, pos))
+		return ;
+	temp = pos->x;
+	pos->x = x;
+	if (!is_wall(map, pos))
+		return ;
+	pos->y = y;
+	pos->x = temp;
+	if (!is_wall(map, pos))
+		return ;
+	pos->x = x;
+	pos->y = y;
 }

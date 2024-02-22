@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:47 by jealves-          #+#    #+#             */
 /*   Updated: 2024/02/21 18:42:39 by analexan         ###   ########.fr       */
@@ -58,4 +58,18 @@ int	argb(double a, int r, int g, int b)
 	g *= a;
 	b *= a;
 	return (r << 16 | g << 8 | b);
+}
+
+bool	is_map(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!ft_strchr("01NSEW\t\n ", line[i]) || (i == 0 && line[i] == '\n'))
+			return (false);
+		i++;
+	}
+	return (true);
 }
