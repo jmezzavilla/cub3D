@@ -1,0 +1,13 @@
+NO ./sprites/tile_no.xpm
+SO ./sprites/tile_so.xpm
+WE ./sprites/tile_we.xpm
+EA ./sprites/tile_ea.xpm
+
+F 220     ,100,0
+C 225,30,0
+
+111
+1N1
+111
+
+
