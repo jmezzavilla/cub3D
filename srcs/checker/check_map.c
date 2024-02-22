@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:17 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 18:47:52 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:15:12 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_first_last_line(char **map)
 	while (map[0][x])
 	{
 		if (map[0][x] != '1' && map[0][x] != ' ' && map[0][x] != '\n')
-			error_msg("erro primeira linha"); // 2/3...
+			error_msg("Invalid map");
 		x++;
 	}
 	x = 0;
@@ -29,7 +29,7 @@ void	check_first_last_line(char **map)
 	while (map[y][x])
 	{
 		if (map[y][x] != '1' && map[y][x] != ' ' && map[y][x] != '\n')
-			error_msg("erro ultima linha"); // 2/3...
+			error_msg("Invalid map");
 		x++;
 	}
 }
@@ -47,7 +47,7 @@ void	check_first_column(char **map, int y)
 			continue ;
 		}
 		if (map[y][x] != '1')
-			error_msg("erro primeira coluna"); // 2/3...
+			error_msg("Invalid map");
 		break ;
 	}
 }
@@ -65,7 +65,7 @@ void	check_last_column(char **map, int y)
 			continue ;
 		}
 		if (map[y][x] != '1')
-			error_msg("erro ultima coluna"); // 2/3...
+			error_msg("Invalid map");
 		break ;
 	}
 }

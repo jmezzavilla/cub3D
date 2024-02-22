@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:24:12 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 19:00:13 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:41:27 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,81 +18,73 @@ void	clean_lst(void *item)
 		free(item);
 }
 
-void	destroy_player(t_game *game)
+void	destroy_scene_and_player(t_game *gm)
 {
-	free(game->player->dir);
-	free(game->player->plane);
-	free(game->player->pos);
-	free(game->player);
-}
-
-// mode 0 = free file, mode 1 = free file and map, mode 2 = free all
-void	free_file(t_file *file, int mode)
-{
-	if (mode)
+	if (gm->scene)
 	{
-		free(file->path_ea);
-		free(file->path_so);
-		free(file->path_we);
-		free(file->path_no);
-		free(file->color_c);
-		free(file->color_f);
-		if (mode == 2)
-			ft_lstclear(&file->map_lst, clean_lst);
+		if (gm->scene->text_no.img)
+			mlx_destroy_image(gm->mlx, gm->scene->text_no.img);
+		if (gm->scene->text_so.img)
+			mlx_destroy_image(gm->mlx, gm->scene->text_so.img);
+		if (gm->scene->text_we.img)
+			mlx_destroy_image(gm->mlx, gm->scene->text_we.img);
+		if (gm->scene->text_ea.img)
+			mlx_destroy_image(gm->mlx, gm->scene->text_ea.img);
+		free(gm->scene);
 	}
-	free(file);
+	if (!gm->player)
+		return ;
+	free(gm->player->dir);
+	free(gm->player->plane);
+	free(gm->player->pos);
+	free(gm->player);
 }
 
-/*
-> 3
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	ft_cleanup_strs(game->map);
-	ft_cleanup_strs(game->map_checker);
-> 2
-	free(game->scene);
-> 1
-	mlx_destroy_image(game->mlx, game->image_buffer.img);
-	mlx_destroy_image(game->mlx, game->scene->text_no.img);
-	mlx_destroy_image(game->mlx, game->scene->text_ea.img);
-	mlx_destroy_image(game->mlx, game->scene->text_so.img);
-	mlx_destroy_image(game->mlx, game->scene->text_we.img);
-	destroy_player(game);
-> 0
-	free(game->raycast.map);
-	free(game->raycast.side_dist);
-	free(game->raycast.delta_dist);
-	free(game->raycast.dir);
-	free_file(game->file, 2);
-> -1
-	free(game->mlx);
-*/
-void	destroy_game(t_game *game)
+void	free_file_and_maps(t_game *gm)
 {
-	mlx_do_key_autorepeaton(gm()->mlx);
-	free_file(game->file, 2);
-	free(game->raycast.map);
-	free(game->raycast.side_dist);
-	free(game->raycast.delta_dist);
-	free(game->raycast.dir);
-	destroy_player(game);
-	mlx_destroy_image(game->mlx, game->image_buffer.img);
-	mlx_destroy_image(game->mlx, game->scene->text_no.img);
-	mlx_destroy_image(game->mlx, game->scene->text_ea.img);
-	mlx_destroy_image(game->mlx, game->scene->text_so.img);
-	mlx_destroy_image(game->mlx, game->scene->text_we.img);
-	free(game->scene);
-	ft_cleanup_strs(game->map);
-	ft_cleanup_strs(game->map_checker);
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
+	if (gm->file->map_lst)
+		ft_lstclear(&gm->file->map_lst, clean_lst);
+	if (gm->file->path_no)
+		free(gm->file->path_no);
+	if (gm->file->path_so)
+		free(gm->file->path_so);
+	if (gm->file->path_we)
+		free(gm->file->path_we);
+	if (gm->file->path_ea)
+		free(gm->file->path_ea);
+	if (gm->file->color_f)
+		free(gm->file->color_f);
+	if (gm->file->color_c)
+		free(gm->file->color_c);
+	free(gm->file);
+	if (gm->map)
+		ft_cleanup_strs(gm->map);
+	if (gm->map_checker)
+		ft_cleanup_strs(gm->map_checker);
 }
 
-void	end_game(int mode)
+void	end_game(t_game *gm)
 {
-	(void)mode;
-	if (gm() && gm()->file)
-		destroy_game(gm());
-	exit(EXIT_SUCCESS);
+	if (!gm || !gm->file)
+		return ;
+	free_file_and_maps(gm);
+	if (gm->raycast.map)
+		free(gm->raycast.map);
+	if (gm->raycast.side_dist)
+		free(gm->raycast.side_dist);
+	if (gm->raycast.delta_dist)
+		free(gm->raycast.delta_dist);
+	if (gm->raycast.dir)
+		free(gm->raycast.dir);
+	destroy_scene_and_player(gm);
+	if (gm->image_buffer.img)
+		mlx_destroy_image(gm->mlx, gm->image_buffer.img);
+	if (gm->win)
+		mlx_destroy_window(gm->mlx, gm->win);
+	if (gm->mlx)
+	{
+		mlx_do_key_autorepeaton(gm->mlx);
+		mlx_destroy_display(gm->mlx);
+		free(gm->mlx);
+	}
 }

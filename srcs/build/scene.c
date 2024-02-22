@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:12:06 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 18:46:44 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:02:37 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	load_sprite(char *path, t_buffer *target)
 	target->img = mlx_xpm_file_to_image(gm()->mlx, path, &target->width,
 			&target->height);
 	if (!target->img)
-		error_msg("Corrupted Sprite"); // 2/3
+		error_msg("Corrupted Sprite");
 	target->addr = mlx_get_data_addr(target->img, &target->bits_per_pixel,
 			&target->line_length, &target->endian);
 }
@@ -26,26 +26,39 @@ void	create_sprites(char *sprite_path, t_buffer *target)
 {
 	int	fd_xpm;
 
+	if (!sprite_path)
+		error_msg("No sprite path");
 	fd_xpm = open(sprite_path, O_RDONLY);
 	if (fd_xpm == -1)
-		error_msg("Cannot open sprite"); // 2/3
+		error_msg("Cannot open sprite");
 	close(fd_xpm);
 	load_sprite(sprite_path, target);
 	fd_xpm = -1;
 }
 
-int	get_nbr(char *color)
+int	get_nbr(char *color, char **split_rgb)
 {
 	int	nbr;
 
 	if (!color)
+	{
+		free(color);
+		ft_cleanup_strs(split_rgb);
 		error_msg("Empty color");
+	}
 	if (!ft_isnumber(color))
+	{
+		free(color);
+		ft_cleanup_strs(split_rgb);
 		error_msg("Color must be a number");
+	}
 	nbr = ft_atoi(color);
 	free(color);
 	if (nbr < 0 || nbr > 255)
+	{
+		ft_cleanup_strs(split_rgb);
 		error_msg("Invalid color");
+	}
 	return (nbr);
 }
 
@@ -62,10 +75,13 @@ void	create_color(char *rgb, int *color)
 	if (!split_rgb)
 		error_msg("Invalid RGB");
 	if (ft_strlen_matrix(split_rgb) != 3)
+	{
+		ft_cleanup_strs(split_rgb);
 		error_msg("Invalid color pattern");
-	red = get_nbr(ft_strtrim(split_rgb[0], " "));
-	green = get_nbr(ft_strtrim(split_rgb[1], " "));
-	blue = get_nbr(ft_strtrim(split_rgb[2], " "));
+	}
+	red = get_nbr(ft_strtrim(split_rgb[0], " "), split_rgb);
+	green = get_nbr(ft_strtrim(split_rgb[1], " "), split_rgb);
+	blue = get_nbr(ft_strtrim(split_rgb[2], " "), split_rgb);
 	*color = argb(0.1, red, green, blue);
 	ft_cleanup_strs(split_rgb);
 }
@@ -74,7 +90,7 @@ void	build_scene(void)
 {
 	(gm()->scene) = ft_calloc(sizeof(t_scene), 1);
 	if (!gm()->scene)
-		error_msg("Memory allocation - scene"); // 2/3
+		error_msg("Memory allocation - scene");
 	create_color(gm()->file->color_c, &gm()->scene->color_c);
 	create_color(gm()->file->color_f, &gm()->scene->color_f);
 	create_sprites(gm()->file->path_no, &gm()->scene->text_no);

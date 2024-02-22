@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:51:22 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/22 14:45:13 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:23:05 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ bool			is_map(char *line);
 void			clear_screen(void);
 void			ft_cleanup_strs(char **strs);
 // destroy_game
-void			end_game(int mode);
+void			end_game(t_game *gm);
 // msg
 void			error_msg(char *message);
 // utils
