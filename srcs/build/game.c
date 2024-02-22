@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 18:26:32 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 13:50:26 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	build(char *map_path)
 {
 	build_file(map_path);
 	build_game();
-	build_player();
 	gm()->mlx = mlx_init();
 	build_scene();
+	build_player();
 	check();
 	build_mlx_itens(gm());
 }
