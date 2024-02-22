@@ -32,6 +32,7 @@ SRC =		cub3d.c\
 			build/characters.c\
 			build/file.c\
 			build/scene.c\
+			build/door.c\
 			utils/msg.c\
 			utils/clean.c\
 			utils/utils.c\

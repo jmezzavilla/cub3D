@@ -3,36 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   colision.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:46:44 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 14:56:51 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:30:49 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 
 // This function checks if the new position is a wall
 int	is_wall(char **map, t_coord *pos)
 {
 	int	y;
 	int	x;
+	t_door *door;
 
 	y = pos->y - WALL_DISTANCE;
 	x = pos->x - WALL_DISTANCE;
-	if (map[y][x] == '1')
+	door = get_door(y,x);
+	if (map[y][x] == '1' || (door && !door->open))
 		return (true);
 	y = pos->y - WALL_DISTANCE;
 	x = pos->x + WALL_DISTANCE;
-	if (map[y][x] == '1')
+	door = get_door(y,x);
+	if (map[y][x] == '1' || (door && !door->open))
 		return (true);
 	y = pos->y + WALL_DISTANCE;
 	x = pos->x - WALL_DISTANCE;
-	if (map[y][x] == '1')
+	door = get_door(y,x);
+	if (map[y][x] == '1' || (door && !door->open))
 		return (true);
 	y = pos->y + WALL_DISTANCE;
 	x = pos->x + WALL_DISTANCE;
-	if (map[y][x] == '1')
+	door = get_door(y,x);
+	if (map[y][x] == '1' || (door && !door->open))
 		return (true);
 	return (false);
 }

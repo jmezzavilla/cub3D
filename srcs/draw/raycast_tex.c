@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_tex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:50:36 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/22 14:32:20 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:47:27 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ double	get_wall_x(t_game *game)
 	return (wall_x);
 }
 
-t_buffer	*get_texture_wall(t_game *game)
+t_buffer	*get_texture_wall(t_game *game, t_door *door)
 {
+	if(door)
+		return(&door->img);
 	if (game->raycast.side == 0)
 	{
 		if (game->raycast.dir->x > 0)
@@ -57,7 +59,7 @@ Cast the texture coordinate to integer,
 and protect with (texHeight - 1) in case of overflow
 		tex.y = (int)tex_pos & (BLOCK_PIXEL - 1);
 */
-void	draw_wall(int x, int draw_start, int draw_end, t_game *game)
+void	draw_wall(int x, int draw_start, int draw_end, t_door *door)
 {
 	int		i;
 	double	wall_x;
@@ -66,21 +68,21 @@ void	draw_wall(int x, int draw_start, int draw_end, t_game *game)
 	double	tex_pos;
 
 	i = draw_start;
-	wall_x = get_wall_x(game);
+	wall_x = get_wall_x(gm());
 	tex.x = (int)(wall_x * BLOCK_PIXEL);
-	if (game->raycast.side == 0 && game->raycast.dir->x > 0)
+	if (gm()->raycast.side == 0 && gm()->raycast.dir->x > 0)
 		tex.x = BLOCK_PIXEL - tex.x - 1;
-	if (game->raycast.side == 1 && game->raycast.dir->y < 0)
+	if (gm()->raycast.side == 1 && gm()->raycast.dir->y < 0)
 		tex.x = BLOCK_PIXEL - tex.x - 1;
-	step = 1.0 * BLOCK_PIXEL / game->raycast.line_height;
-	tex_pos = (draw_start - WIN_HEIGHT / 2 + game->raycast.line_height / 2)
+	step = 1.0 * BLOCK_PIXEL / gm()->raycast.line_height;
+	tex_pos = (draw_start - WIN_HEIGHT / 2 + gm()->raycast.line_height / 2)
 		* step;
 	while (i < draw_end)
 	{
 		tex.y = (int)tex_pos & (BLOCK_PIXEL - 1);
 		tex_pos += step;
-		put_pixel(&game->image_buffer, x, i,
-			get_pixel_color(get_texture_wall(game), tex.x, tex.y));
+		put_pixel(&gm()->image_buffer, x, i,
+			get_pixel_color(get_texture_wall(gm(), door), tex.x, tex.y));
 		i++;
 	}
 }

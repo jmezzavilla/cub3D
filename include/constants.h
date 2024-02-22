@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:36:39 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 21:29:27 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:49:45 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@
 # define RIGHT_KEY 65363
 # define ESC_KEY 65307
 # define SHIFT_KEY 65505
+# define SPACE_KEY 32
 
 #endif

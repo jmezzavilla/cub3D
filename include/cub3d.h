@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:51:22 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/22 17:26:31 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:57:08 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_scene
 	t_buffer	text_ea;
 	int			color_f;
 	int			color_c;
+	t_buffer	exit[4];
 }				t_scene;
 
 typedef struct s_controls
@@ -95,6 +96,15 @@ typedef struct s_controls
 	int			rotate_right;
 	bool		minimap_view;
 }				t_controls;
+
+typedef struct s_door
+{
+	t_coord		*pos;
+	bool		open;
+	int			img_pos;
+	t_buffer	img;
+}				t_door;
+
 
 typedef struct s_game
 {
@@ -110,6 +120,7 @@ typedef struct s_game
 	t_scene		*scene;
 	t_raycast	raycast;
 	t_controls	controls;
+	t_list		*doors;
 }				t_game;
 
 // cub3d
@@ -162,7 +173,7 @@ void			rotate_left(t_player *player);
 void			rotate_right(t_player *player);
 void			event_player(t_game *game);
 // raycast_tex
-void			draw_wall(int x, int draw_start, int draw_end, t_game *game);
+void			draw_wall(int x, int draw_start, int draw_end, t_door *door);
 void			paint_floor(int color, int x, int d_end, t_game *game);
 void			paint_ceiling(int color, int x, int d_start, t_game *game);
 // raycast
@@ -182,5 +193,9 @@ char			**convert_lst_to_char(t_list *lst);
 bool			is_map_char(char c);
 t_coord			*set_coord(double y, double x);
 int				argb(double a, int r, int g, int b);
+
+t_door *get_door(int y, int x);
+void	build_door(void);
+void 	open_door();
 
 #endif
