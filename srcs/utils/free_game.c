@@ -3,26 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:24:12 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 17:17:38 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:19:55 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void clean_lst(void *item)
+void	clean_lst(void *item)
 {
 	if (item)
 		free(item);
 }
 
-void free_door(t_game *game)
+void	free_door(t_game *game)
 {
-	int i;
-	t_door *door;
-	t_list *cur;
+	int		i;
+	t_door	*door;
+	t_list	*cur;
+
 	i = 0;
 	cur = game->doors;
 	while (i < TOTAL_SPRITE_EXIT)
@@ -40,7 +41,7 @@ void free_door(t_game *game)
 	ft_lstclear(&game->doors, clean_lst);
 }
 
-void free_scene_and_player(t_game *game)
+void	free_scene_and_player(t_game *game)
 {
 	if (game->scene)
 	{
@@ -56,7 +57,7 @@ void free_scene_and_player(t_game *game)
 		free(game->scene);
 	}
 	if (!game->player)
-		return;
+		return ;
 	free(game->player->dir);
 	free(game->player->plane);
 	free(game->player->pos);
@@ -88,11 +89,11 @@ void free_file_and_maps(t_game *game)
 		ft_cleanup_strs(game->map_checker);
 }
 
-void free_game(t_game *game)
+void	free_game(t_game *game)
 {
 	if (!game || !game->file)
-		return;
-	if(game->file->gnl)
+		return ;
+	if (game->file->gnl)
 		ft_lstclear(&game->file->gnl, clean_lst);
 	free_file_and_maps(game);
 	if (game->raycast.map)
