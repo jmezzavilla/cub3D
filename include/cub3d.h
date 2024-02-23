@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:51:22 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/22 23:59:16 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:12:29 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_coord
 typedef struct s_file
 {
 	t_list		*map_lst;
+	t_list		*gnl;
 	char		*path_no;
 	char		*path_so;
 	char		*path_we;

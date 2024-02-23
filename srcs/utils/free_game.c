@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:24:12 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 13:54:55 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:17:38 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void free_game(t_game *game)
 {
 	if (!game || !game->file)
 		return;
+	if(game->file->gnl)
+		ft_lstclear(&game->file->gnl, clean_lst);
 	free_file_and_maps(game);
 	if (game->raycast.map)
 		free(game->raycast.map);
