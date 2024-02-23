@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:50:36 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/22 22:47:27 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/22 23:58:08 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ double	get_wall_x(t_game *game)
 
 t_buffer	*get_texture_wall(t_game *game, t_door *door)
 {
-	if(door)
-		return(&door->img);
+	if (door)
+		return (action_door(door));
 	if (game->raycast.side == 0)
 	{
 		if (game->raycast.dir->x > 0)

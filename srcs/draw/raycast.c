@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:06:57 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 22:37:33 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/22 23:58:01 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	draw_raycast(int x, t_game *game, t_door *door)
 	paint_ceiling(game->scene->color_c, x, draw_start, game);
 }
 
-	// this calculates the distance from the starting
-	// point to the first line in the grid
-	// if (game->raycast.dir->x < 0)...
+// this calculates the distance from the starting
+// point to the first line in the grid
+// if (game->raycast.dir->x < 0)...
 void	calc_steps(t_game *game)
 {
 	if (game->raycast.dir->x < 0)
@@ -74,15 +74,15 @@ void	calc_steps(t_game *game)
 	}
 }
 
-			//! This is done by repeatedly adding the distance the ray
-			//! travels in the x or y direction to the current
-			//! position of the ray, and checking whether the new
-			//! position is a wall.
-			// game->raycast.side_dist->x += game->raycast.delta_dist->x;...
-t_door 	*dda(t_game *game)
+//! This is done by repeatedly adding the distance the ray
+//! travels in the x or y direction to the current
+//! position of the ray, and checking whether the new
+//! position is a wall.
+// game->raycast.side_dist->x += game->raycast.delta_dist->x;...
+t_door	*dda(t_game *game)
 {
-	int	hit;
-	char c;
+	int		hit;
+	char	c;
 
 	hit = 0;
 	while (hit == 0)
@@ -110,9 +110,10 @@ t_door 	*dda(t_game *game)
 
 /*
 	// x is for each column of the screen (0 to 1600)
-	// x / (double)WIN_WIDTH is a num from 0 to 1 that 
+	// x / (double)WIN_WIDTH is a num from 0 to 1 that
 	// represents a num from 0 to 1600
-	// and then the (2 *) and the (-1) are to convert the scale 0 to 1 -> -1 to 1
+	// and then the (2 *) and the (-1) are to convert the scale 0 to 1 ->
+		-1 to 1
 	camera_x = 2 * x / (double)WIN_WIDTH - 1;
 	//! game->player->plane->x is from -1 to 1
 	// this operation is to calculate the point here the ray is pointing
@@ -143,13 +144,13 @@ void	init_ray(t_game *game, int x)
 		game->raycast.delta_dist->y = fabs(1 / game->raycast.dir->y);
 }
 
-		//! raycast.side_dist are the distances that the ray
-		//! has traveled in the x or y directions
-		// if (game->raycast.side == 0)...
+//! raycast.side_dist are the distances that the ray
+//! has traveled in the x or y directions
+// if (game->raycast.side == 0)...
 void	raycast(t_game *game)
 {
-	int	x;
-	t_door *door;
+	int		x;
+	t_door	*door;
 
 	x = 0;
 	while (x < WIN_WIDTH)

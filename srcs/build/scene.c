@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:12:06 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 22:03:00 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/22 23:57:50 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,4 @@ void	build_scene(void)
 	create_sprites("./sprites/exit1.xpm", &gm()->scene->exit[1]);
 	create_sprites("./sprites/exit2.xpm", &gm()->scene->exit[2]);
 	create_sprites("./sprites/exit3.xpm", &gm()->scene->exit[3]);
-	
 }

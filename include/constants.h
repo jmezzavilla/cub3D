@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:36:39 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 22:49:45 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/22 23:59:02 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define BLOCK_PIXEL 512
 # define MOVE 0.025
 # define WALL_DISTANCE 0.2
+# define TOTAL_SPRITE_EXIT 4
 
 # define W_KEY 119
 # define A_KEY 97

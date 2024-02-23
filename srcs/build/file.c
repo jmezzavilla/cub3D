@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:03 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 20:30:22 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/22 23:58:24 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 char	*elem(char *result, char *cur, int fd, char **sp)
 {
-	int size;
+	int	size;
+
 	if (cur)
 	{
 		close(fd);
@@ -22,7 +23,7 @@ char	*elem(char *result, char *cur, int fd, char **sp)
 		error_msg("More than one texture/color");
 	}
 	size = ft_strlen(result) - 1;
-	if(result[size] == '\n')
+	if (result[size] == '\n')
 		result[size] = '\0';
 	return (ft_strdup(result));
 }

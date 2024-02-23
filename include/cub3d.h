@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:51:22 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/22 22:57:08 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/22 23:59:16 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct s_scene
 	t_buffer	text_ea;
 	int			color_f;
 	int			color_c;
-	t_buffer	exit[4];
+	t_buffer	exit[TOTAL_SPRITE_EXIT];
 }				t_scene;
 
 typedef struct s_controls
@@ -102,9 +102,8 @@ typedef struct s_door
 	t_coord		*pos;
 	bool		open;
 	int			img_pos;
-	t_buffer	img;
+	int			animation;
 }				t_door;
-
 
 typedef struct s_game
 {
@@ -194,8 +193,9 @@ bool			is_map_char(char c);
 t_coord			*set_coord(double y, double x);
 int				argb(double a, int r, int g, int b);
 
-t_door *get_door(int y, int x);
-void	build_door(void);
-void 	open_door();
+t_door			*get_door(int y, int x);
+void			build_door(void);
+void			open_door(t_player *player);
+t_buffer		*action_door(t_door *door);
 
 #endif
