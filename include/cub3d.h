@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:51:22 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/23 18:36:44 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:59:59 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_player
 	t_coord		*pos;
 	t_coord		*dir;
 	t_coord		*plane;
-	bool		has_player;
 }				t_player;
 
 typedef struct s_raycast
