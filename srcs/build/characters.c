@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:30:46 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 18:59:52 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:04:07 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	build_player(void)
 			if (gm()->map[y][x] == 'N' || gm()->map[y][x] == 'S'
 				|| gm()->map[y][x] == 'E' || gm()->map[y][x] == 'W')
 			{
-				if (gm()->nbr_player > 1)
-					return ;
+				if (gm()->nbr_player > 0)
+					error_msg("Invalid number of players");
 				set_player_dir(&gm()->player, x, y, gm()->map[y][x]);
 				gm()->map[y][x] = '0';
 				gm()->nbr_player++;
