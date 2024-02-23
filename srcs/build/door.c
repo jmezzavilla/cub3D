@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 22:44:49 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 00:00:29 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:37:45 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_buffer	*action_door(t_door *door)
 {
 	if (door->open)
 	{
-		if (door->animation == 10000000)
+		if (door->animation == 1000000)
 		{
 			if (door->img_pos < TOTAL_SPRITE_EXIT - 1)
 				door->img_pos += 1;
@@ -27,7 +27,7 @@ t_buffer	*action_door(t_door *door)
 	}
 	else
 	{
-		if (door->animation == 10000000)
+		if (door->animation == 1000000)
 		{
 			if (door->img_pos != 0)
 				door->img_pos -= 1;

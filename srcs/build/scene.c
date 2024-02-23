@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:12:06 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 16:28:46 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:38:06 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,12 @@ void	build_scene(void)
 	create_sprites("./sprites/exit1.xpm", &gm()->scene->exit[1]);
 	create_sprites("./sprites/exit2.xpm", &gm()->scene->exit[2]);
 	create_sprites("./sprites/exit3.xpm", &gm()->scene->exit[3]);
+	create_sprites("./sprites/exit4.xpm", &gm()->scene->exit[4]);
+	create_sprites("./sprites/exit5.xpm", &gm()->scene->exit[5]);
+	create_sprites("./sprites/exit6.xpm", &gm()->scene->exit[6]);
+	create_sprites("./sprites/exit7.xpm", &gm()->scene->exit[7]);
+	create_sprites("./sprites/exit8.xpm", &gm()->scene->exit[8]);
+	create_sprites("./sprites/exit9.xpm", &gm()->scene->exit[9]);
+	create_sprites("./sprites/exit10.xpm", &gm()->scene->exit[10]);
+	create_sprites("./sprites/exit11.xpm", &gm()->scene->exit[11]);
 }
