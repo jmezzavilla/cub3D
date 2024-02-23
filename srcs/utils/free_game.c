@@ -6,32 +6,41 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:24:12 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 00:09:49 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/23 13:54:55 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	clean_lst(void *item)
+void clean_lst(void *item)
 {
 	if (item)
 		free(item);
 }
 
-void	free_door(t_game *game)
+void free_door(t_game *game)
 {
-	int	i;
-
+	int i;
+	t_door *door;
+	t_list *cur;
 	i = 0;
+	cur = game->doors;
 	while (i < TOTAL_SPRITE_EXIT)
 	{
 		if (game->scene->exit[i].img)
 			mlx_destroy_image(game->mlx, game->scene->exit[i].img);
 		i++;
 	}
+	while (cur)
+	{
+		door = cur->content;
+		free(door->pos);
+		cur = cur->next;
+	}
+	ft_lstclear(&game->doors, clean_lst);
 }
 
-void	free_scene_and_player(t_game *game)
+void free_scene_and_player(t_game *game)
 {
 	if (game->scene)
 	{
@@ -47,14 +56,14 @@ void	free_scene_and_player(t_game *game)
 		free(game->scene);
 	}
 	if (!game->player)
-		return ;
+		return;
 	free(game->player->dir);
 	free(game->player->plane);
 	free(game->player->pos);
 	free(game->player);
 }
 
-void	free_file_and_maps(t_game *game)
+void free_file_and_maps(t_game *game)
 {
 	if (game->file->map_lst)
 		ft_lstclear(&game->file->map_lst, clean_lst);
@@ -70,6 +79,8 @@ void	free_file_and_maps(t_game *game)
 		free(game->file->color_f);
 	if (game->file->color_c)
 		free(game->file->color_c);
+	if (game->file->map_lst)
+		ft_lstclear(&game->file->map_lst, clean_lst);
 	free(game->file);
 	if (game->map)
 		ft_cleanup_strs(game->map);
@@ -77,10 +88,10 @@ void	free_file_and_maps(t_game *game)
 		ft_cleanup_strs(game->map_checker);
 }
 
-void	free_game(t_game *game)
+void free_game(t_game *game)
 {
 	if (!game || !game->file)
-		return ;
+		return;
 	free_file_and_maps(game);
 	if (game->raycast.map)
 		free(game->raycast.map);
