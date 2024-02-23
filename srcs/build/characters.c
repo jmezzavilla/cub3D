@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   characters.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:30:46 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 18:36:58 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:46:00 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ void	build_player(void)
 			if (gm()->map[y][x] == 'N' || gm()->map[y][x] == 'S'
 				|| gm()->map[y][x] == 'E' || gm()->map[y][x] == 'W')
 			{
+				gm()->nbr_player++;
 				if (gm()->player && gm()->player->has_player)
-					return (gm()->nbr_player++, (void)0);
+					return;
 				set_player_dir(&gm()->player, x, y, gm()->map[y][x]);
 				gm()->player->has_player = 1;
 			}

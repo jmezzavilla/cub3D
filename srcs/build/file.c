@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:03 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 17:18:09 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:41:36 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	read_elements(char *line, int fd)
 		(gm()->file->color_c) = elem(line + 2, gm()->file->color_c, fd, sp);
 	ft_cleanup_strs(sp);
 	if (i != 2 && line[0] != '\n' && line[0] != 'F' && line[0] != 'C')
-		error_msg("Invalid texture");
+		return (close(fd), error_msg("Invalid texture"));
 }
 
 void	read_get_next_line(char *line, bool *map, bool *nl, int fd)
