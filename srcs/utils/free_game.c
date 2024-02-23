@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_game.c                                     :+:      :+:    :+:   */
+/*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:24:12 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 17:25:52 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 00:09:49 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@ void	clean_lst(void *item)
 {
 	if (item)
 		free(item);
+}
+
+void	free_door(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < TOTAL_SPRITE_EXIT)
+	{
+		if (game->scene->exit[i].img)
+			mlx_destroy_image(game->mlx, game->scene->exit[i].img);
+		i++;
+	}
 }
 
 void	free_scene_and_player(t_game *game)
@@ -30,6 +43,7 @@ void	free_scene_and_player(t_game *game)
 			mlx_destroy_image(game->mlx, game->scene->text_we.img);
 		if (game->scene->text_ea.img)
 			mlx_destroy_image(game->mlx, game->scene->text_ea.img);
+		free_door(game);
 		free(game->scene);
 	}
 	if (!game->player)
