@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:24:12 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 19:19:55 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:42:09 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	free_scene_and_player(t_game *game)
 	free(game->player);
 }
 
-void free_file_and_maps(t_game *game)
+void	free_file_and_maps(t_game *game)
 {
 	if (game->file->map_lst)
 		ft_lstclear(&game->file->map_lst, clean_lst);

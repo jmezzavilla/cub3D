@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:03 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 19:01:27 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:41:13 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	read_get_next_line(char *line, bool *map, bool *nl, int fd)
 	{
 		if (ft_strcmp(line, "\n") && (!is_map(line) || *nl))
 		{
-			free(line);
 			close(fd);
 			error_msg("Invalid structure map");
 		}
