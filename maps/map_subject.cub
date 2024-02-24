@@ -3,8 +3,8 @@ SO ./sprites/tile_so.xpm
 WE ./sprites/tile_we.xpm
 EA ./sprites/tile_ea.xpm
 
-F 0,128,0
-C 65,105,255
+F 117,121,128
+C 52,36,68
 
 
        1111111111111111111111111
