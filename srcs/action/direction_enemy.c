@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 13:24:53 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/24 17:25:35 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:09:43 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	kill_player(t_enemy *enemy, t_player *player)
 	if ((int)enemy->pos->x == (int)player->pos->x
 		&& (int)enemy->pos->y == (int)player->pos->y)
 	{
-		prt("You loser a game, try again\n");
+		prt("Try again\n");
 		quit();
 	}
 }

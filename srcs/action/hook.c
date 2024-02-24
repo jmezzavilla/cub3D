@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/24 17:17:15 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:05:31 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	key_release(int key, t_game *game)
 
 int	quit(void)
 {
-	prt("\033[1;34mFim\033[0m\n");
+	prt("\033[1;34mLeaving Space X\033[0m\n");
 	free_game(gm());
 	exit(EXIT_SUCCESS);
 	return (0);
