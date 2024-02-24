@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:50:36 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/23 16:22:52 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/24 02:21:49 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ double	get_wall_x(t_game *game)
 	return (wall_x);
 }
 
-t_buffer	*get_texture_wall(t_game *game, t_door *door)
+t_buffer	*get_texture_wall(t_game *game)
 {
-	if (door)
-		return (action_door(door));
+	if (get_door((int)game->raycast.map->y, (int)game->raycast.map->x))
+		return (action_door(get_door((int)game->raycast.map->y,
+					(int)game->raycast.map->x)));
 	else if (game->raycast.side == 0)
 	{
 		if (game->raycast.dir->x > 0)
@@ -59,7 +60,7 @@ Cast the texture coordinate to integer,
 and protect with (texHeight - 1) in case of overflow
 		tex.y = (int)tex_pos & (BLOCK_PIXEL - 1);
 */
-void	draw_wall(int x, int draw_start, int draw_end, t_door *door)
+void	draw_wall(int x, int draw_start, int draw_end)
 {
 	int		i;
 	double	wall_x;
@@ -82,7 +83,7 @@ void	draw_wall(int x, int draw_start, int draw_end, t_door *door)
 		tex.y = (int)tex_pos & (BLOCK_PIXEL - 1);
 		tex_pos += step;
 		put_pixel(&gm()->image_buffer, x, i,
-			get_pixel_color(get_texture_wall(gm(), door), tex.x, tex.y));
+			get_pixel_color(get_texture_wall(gm()), tex.x, tex.y));
 		i++;
 	}
 }

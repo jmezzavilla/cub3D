@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:24:12 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 19:42:09 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/24 02:43:14 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	free_scene_and_player(t_game *game)
 		if (game->scene->text_ea.img)
 			mlx_destroy_image(game->mlx, game->scene->text_ea.img);
 		free_door(game);
+		free_enemy(game);
 		free(game->scene);
 	}
 	if (!game->player)

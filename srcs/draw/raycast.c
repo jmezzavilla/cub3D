@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:06:57 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 23:58:01 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/24 02:21:44 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 	// calculate lowest and highest pixel to fill in current stripe
 	draw_start = -game->raycast.line_height / 2 + WIN_HEIGHT / 2;...
 */
-void	draw_raycast(int x, t_game *game, t_door *door)
+void	draw_raycast(int x, t_game *game)
 {
 	int	draw_start;
 	int	draw_end;
@@ -38,7 +38,7 @@ void	draw_raycast(int x, t_game *game, t_door *door)
 		draw_end = WIN_HEIGHT - 1;
 	if (draw_end < 0)
 		draw_end = 0;
-	draw_wall(x, draw_start, draw_end, door);
+	draw_wall(x, draw_start, draw_end);
 	paint_floor(game->scene->color_f, x, draw_end, game);
 	paint_ceiling(game->scene->color_c, x, draw_start, game);
 }
@@ -79,7 +79,7 @@ void	calc_steps(t_game *game)
 //! position of the ray, and checking whether the new
 //! position is a wall.
 // game->raycast.side_dist->x += game->raycast.delta_dist->x;...
-t_door	*dda(t_game *game)
+void	dda(t_game *game)
 {
 	int		hit;
 	char	c;
@@ -105,7 +105,6 @@ t_door	*dda(t_game *game)
 			&& (c == '1' || c == 'D'))
 			hit = 1;
 	}
-	return (get_door((int)game->raycast.map->y, (int)game->raycast.map->x));
 }
 
 /*
@@ -149,22 +148,23 @@ void	init_ray(t_game *game, int x)
 // if (game->raycast.side == 0)...
 void	raycast(t_game *game)
 {
-	int		x;
-	t_door	*door;
+	int	x;
 
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
 		init_ray(game, x);
 		calc_steps(game);
-		door = dda(game);
+		dda(game);
 		if (game->raycast.side == 0)
 			game->raycast.perp_wall_dist = (game->raycast.side_dist->x
 					- game->raycast.delta_dist->x);
 		else
 			game->raycast.perp_wall_dist = (game->raycast.side_dist->y
 					- game->raycast.delta_dist->y);
-		draw_raycast(x, game, door);
+		game->raycast.z_buffer[x] = game->raycast.perp_wall_dist;
+		draw_raycast(x, game);
 		x++;
 	}
+	draw_enemies(game);
 }

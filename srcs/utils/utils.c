@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:47 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 22:04:14 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:21:55 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ bool	is_map(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (!ft_strchr("01DNSEW\t\n ", line[i]) || (i == 0 && line[i] == '\n'))
+		if (!ft_strchr("01MDNSEW\t\n ", line[i]) || (i == 0 && line[i] == '\n'))
 			return (false);
 		i++;
 	}

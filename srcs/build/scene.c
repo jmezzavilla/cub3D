@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:12:06 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 18:38:06 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/24 02:24:17 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,32 +36,6 @@ void	create_sprites(char *sprite_path, t_buffer *target)
 	fd_xpm = -1;
 }
 
-int	get_nbr(char *color, char **split_rgb)
-{
-	int	nbr;
-
-	if (!color)
-	{
-		free(color);
-		ft_cleanup_strs(split_rgb);
-		error_msg("Empty color");
-	}
-	if (!ft_isnumber(color))
-	{
-		free(color);
-		ft_cleanup_strs(split_rgb);
-		error_msg("Color must be a number");
-	}
-	nbr = ft_atoi(color);
-	free(color);
-	if (nbr < 0 || nbr > 255)
-	{
-		ft_cleanup_strs(split_rgb);
-		error_msg("Invalid color");
-	}
-	return (nbr);
-}
-
 void	create_color(char *rgb, int *color)
 {
 	char	**split_rgb;
@@ -84,6 +58,23 @@ void	create_color(char *rgb, int *color)
 	blue = get_nbr(ft_strtrim(split_rgb[2], " "), split_rgb);
 	*color = argb(0.1, red, green, blue);
 	ft_cleanup_strs(split_rgb);
+}
+
+void	create_enemy(void)
+{
+	create_sprites("./sprites/enemy/0.xpm", &gm()->scene->enemy[0]);
+	create_sprites("./sprites/enemy/1.xpm", &gm()->scene->enemy[1]);
+	create_sprites("./sprites/enemy/2.xpm", &gm()->scene->enemy[2]);
+	create_sprites("./sprites/enemy/3.xpm", &gm()->scene->enemy[3]);
+	create_sprites("./sprites/enemy/4.xpm", &gm()->scene->enemy[4]);
+	create_sprites("./sprites/enemy/5.xpm", &gm()->scene->enemy[5]);
+	create_sprites("./sprites/enemy/6.xpm", &gm()->scene->enemy[6]);
+	create_sprites("./sprites/enemy/7.xpm", &gm()->scene->enemy[7]);
+	create_sprites("./sprites/enemy/8.xpm", &gm()->scene->enemy[8]);
+	create_sprites("./sprites/enemy/9.xpm", &gm()->scene->enemy[9]);
+	create_sprites("./sprites/enemy/10.xpm", &gm()->scene->enemy[10]);
+	create_sprites("./sprites/enemy/11.xpm", &gm()->scene->enemy[11]);
+	create_sprites("./sprites/enemy/12.xpm", &gm()->scene->enemy[12]);
 }
 
 void	build_scene(void)
@@ -109,4 +100,5 @@ void	build_scene(void)
 	create_sprites("./sprites/exit9.xpm", &gm()->scene->exit[9]);
 	create_sprites("./sprites/exit10.xpm", &gm()->scene->exit[10]);
 	create_sprites("./sprites/exit11.xpm", &gm()->scene->exit[11]);
+	create_enemy();
 }

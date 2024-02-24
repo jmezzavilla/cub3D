@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:36:39 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 18:36:30 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/24 01:35:34 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define MOVE 0.025
 # define WALL_DISTANCE 0.2
 # define TOTAL_SPRITE_EXIT 12
+# define TOTAL_SPRITE_ENEMY 13
 
 # define W_KEY 119
 # define A_KEY 97

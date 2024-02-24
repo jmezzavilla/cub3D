@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/21 23:39:55 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/24 02:22:28 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ int	get_color(char c)
 		color = 0xf0f8ff;
 	else if (c == '1')
 		color = gm()->scene->color_f;
+	else if (c == 'D')
+		color = 0xffffff00;
 	else
 		color = gm()->scene->color_c;
 	return (color);
 }
 
-void	draw_player(t_game *data)
+void	draw_player(t_game *game)
 {
 	int	i;
 	int	j;
@@ -57,11 +59,38 @@ void	draw_player(t_game *data)
 		j = 0;
 		while (j < MINIMAP_PX / 2.5)
 		{
-			put_pixel(&data->image_buffer, (data->player->pos->x * MINIMAP_PX)
-				+ i, (data->player->pos->y * MINIMAP_PX) + j, get_color('P'));
+			put_pixel(&game->image_buffer, (game->player->pos->x * MINIMAP_PX)
+				+ i, (game->player->pos->y * MINIMAP_PX) + j, get_color('P'));
 			j++;
 		}
 		i++;
+	}
+}
+
+void	draw_monster(t_game *game)
+{
+	int		i;
+	int		j;
+	t_list	*cur;
+	t_enemy	*enemy;
+
+	i = 0;
+	cur = game->enemies;
+	while (cur)
+	{
+		enemy = cur->content;
+		while (i < MINIMAP_PX / 2.5)
+		{
+			j = 0;
+			while (j < MINIMAP_PX / 2.5)
+			{
+				put_pixel(&game->image_buffer, (enemy->pos->x * MINIMAP_PX) + i,
+					(enemy->pos->y * MINIMAP_PX) + j, 0xffff0000);
+				j++;
+			}
+			i++;
+		}
+		cur = cur->next;
 	}
 }
 
@@ -91,4 +120,5 @@ void	draw_minimap(t_game *game)
 		y++;
 	}
 	draw_player(game);
+	draw_monster(game);
 }
