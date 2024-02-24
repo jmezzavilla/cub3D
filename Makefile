@@ -52,6 +52,7 @@ SRC =		cub3d.c\
 			build/enemy.c\
 			draw/raycast_enemy.c\
 			draw/raycast_enemy2.c\
+			action/direction_enemy.c\
 
 SRC		:= $(addprefix srcs/,$(SRC))
 

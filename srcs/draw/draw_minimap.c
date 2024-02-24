@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/24 02:22:28 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/24 13:42:46 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ void	draw_monster(t_game *game)
 	t_list	*cur;
 	t_enemy	*enemy;
 
-	i = 0;
 	cur = game->enemies;
 	while (cur)
 	{
+		i = 0;
 		enemy = cur->content;
 		while (i < MINIMAP_PX / 2.5)
 		{

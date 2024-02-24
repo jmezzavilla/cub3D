@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:51:22 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/24 02:43:34 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:25:48 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,5 +232,6 @@ int					is_wall(char **map, t_coord *pos);
 void				draw_enemies(t_game *game);
 void				print_enemey_ray(t_enemy *enemy, int stripe);
 void				free_enemy(t_game *game);
+void				move_enemies(t_game *game);
 
 #endif

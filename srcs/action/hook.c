@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/24 01:41:31 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:17:15 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	loop(t_game *game)
 {
 	clear_screen();
 	event_player(game);
+	move_enemies(game);
 	raycast(game);
 	draw_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->image_buffer.img, 0, 0);
