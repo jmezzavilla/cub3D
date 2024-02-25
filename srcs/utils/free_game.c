@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:24:12 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/24 02:43:14 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/25 16:25:16 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	clean_lst(void *item)
 void	free_door(t_game *game)
 {
 	int		i;
-	t_door	*door;
+	t_sprite	*door;
 	t_list	*cur;
 
 	i = 0;
-	cur = game->doors;
+	cur = game->sprites;
 	while (i < TOTAL_SPRITE_EXIT)
 	{
 		if (game->scene->exit[i].img)
@@ -35,10 +35,10 @@ void	free_door(t_game *game)
 	while (cur)
 	{
 		door = cur->content;
-		free(door->pos);
+		if(door->type == 'D')
+			free(door->pos);
 		cur = cur->next;
 	}
-	ft_lstclear(&game->doors, clean_lst);
 }
 
 void	free_scene_and_player(t_game *game)

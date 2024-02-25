@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:06:57 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/24 02:21:44 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/25 16:19:37 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	dda(t_game *game)
 		c = game->map[(int)game->raycast.map->y][(int)game->raycast.map->x];
 		if (game->raycast.map->x >= 0 && game->raycast.map->x < WIN_WIDTH
 			&& game->raycast.map->y >= 0 && game->raycast.map->y < WIN_HEIGHT
-			&& (c == '1' || c == 'D'))
+			&& (c == '1'))
 			hit = 1;
 	}
 }

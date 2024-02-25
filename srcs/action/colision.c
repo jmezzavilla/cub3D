@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 22:46:44 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/24 01:26:28 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/25 16:25:30 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_wall(char **map, t_coord *pos)
 {
 	int		y;
 	int		x;
-	t_door	*door;
+	t_sprite	*door;
 
 	y = pos->y - WALL_DISTANCE;
 	x = pos->x - WALL_DISTANCE;

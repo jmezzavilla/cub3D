@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 22:44:49 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 18:37:45 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/25 16:33:12 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_buffer	*action_door(t_door *door)
+t_buffer	*action_door(t_sprite *door)
 {
 	if (door->open)
 	{
-		if (door->animation == 1000000)
+		if (door->animation == 1000)
 		{
 			if (door->img_pos < TOTAL_SPRITE_EXIT - 1)
 				door->img_pos += 1;
@@ -27,7 +27,7 @@ t_buffer	*action_door(t_door *door)
 	}
 	else
 	{
-		if (door->animation == 1000000)
+		if (door->animation == 1000)
 		{
 			if (door->img_pos != 0)
 				door->img_pos -= 1;
@@ -43,7 +43,7 @@ void	open_door(t_player *player)
 {
 	int		y;
 	int		x;
-	t_door	*door;
+	t_sprite	*door;
 
 	x = player->pos->x + player->dir->x * MOVE;
 	y = player->pos->y + player->dir->y * MOVE - 1;
@@ -67,51 +67,21 @@ void	open_door(t_player *player)
 		door->open = !door->open;
 }
 
-void	set_door(int y, int x)
-{
-	t_door	*door;
-
-	door = ft_calloc(sizeof(t_door), 1);
-	if (!door)
-		error_msg("Memory allocation - door");
-	door->open = false;
-	door->img_pos = 0;
-	door->animation = 0;
-	door->pos = set_coord((double)y, (double)x);
-	ft_lstadd_back(&gm()->doors, ft_lstnew(door));
-}
-
-t_door	*get_door(int y, int x)
+t_sprite	*get_door(int y, int x)
 {
 	t_list	*cur;
-	t_door	*door;
+	t_sprite	*door;
 
-	cur = gm()->doors;
+	cur = gm()->sprites;
 	while (cur)
 	{
 		door = cur->content;
-		if (door->pos->x == x && door->pos->y == y)
+		int mx = door->pos->x;
+		int my = door->pos->y;
+		if (mx == x &&  my == y && door->type == 'D')
 			return (door);
 		cur = cur->next;
 	}
 	return (NULL);
 }
 
-void	build_door(void)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (gm()->map[y])
-	{
-		x = 0;
-		while (gm()->map[y][x])
-		{
-			if (gm()->map[y][x] == 'D')
-				set_door(y, x);
-			x++;
-		}
-		y++;
-	}
-}

@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 20:00:10 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/24 13:42:46 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/25 15:47:38 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,26 @@ void	draw_monster(t_game *game)
 	int		i;
 	int		j;
 	t_list	*cur;
-	t_enemy	*enemy;
+	t_sprite	*sprite;
 
-	cur = game->enemies;
+	cur = game->sprites;
 	while (cur)
 	{
 		i = 0;
-		enemy = cur->content;
-		while (i < MINIMAP_PX / 2.5)
+		sprite = cur->content;
+		if(sprite->type == 'M')
 		{
-			j = 0;
-			while (j < MINIMAP_PX / 2.5)
+			while (i < MINIMAP_PX / 2.5)
 			{
-				put_pixel(&game->image_buffer, (enemy->pos->x * MINIMAP_PX) + i,
-					(enemy->pos->y * MINIMAP_PX) + j, 0xffff0000);
-				j++;
+				j = 0;
+				while (j < MINIMAP_PX / 2.5)
+				{
+					put_pixel(&game->image_buffer, (sprite->pos->x * MINIMAP_PX) + i,
+						(sprite->pos->y * MINIMAP_PX) + j, 0xffff0000);
+					j++;
+				}
+				i++;
 			}
-			i++;
 		}
 		cur = cur->next;
 	}
