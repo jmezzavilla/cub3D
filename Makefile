@@ -82,7 +82,7 @@ fclean:	clean
 
 re:	fclean all
 
-ARGS = maps/map.cub
+ARGS = maps/map_subject.cub
 
 run: re
 	@clear

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/26 12:27:15 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:01:17 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	key_press(int key, t_game *game)
 		game->controls.minimap_view = !game->controls.minimap_view;
 	else if (key == SPACE_KEY)
 		open_door(game->player);
-	else if (key == ESC_KEY)
+	else if (key == ESC_KEY || key == 'q')
 		return (quit());
 	return (EXIT_SUCCESS);
 }
