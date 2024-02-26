@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:47 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 22:04:14 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:35:54 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@ char	**convert_lst_to_char(t_list *lst)
 	return (str);
 }
 
-bool	is_map_char(char c)
+bool	is_map_char(char **map ,int y, int x)
 {
-	if (c != ' ' && c != '\n')
+	int sx;
+	sx = ft_strlen(map[y]) - 1;
+	if(sx < x)
+		return false;
+	if (map[y][x] != ' ' && map[y][x] != '\n' && map[y][x] != '\0')
 		return (true);
 	return (false);
 }

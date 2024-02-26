@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:31 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 20:01:14 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:36:44 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	fill(int y, int x, char **map, int size_y)
 	int	size_x;
 
 	size_x = ft_strlen(map[y]);
-	if (map[y][x] == ' ' || map[y][x] == '1' || map[y][x] == 'I'
-		|| map[y][x] == 'V' || y < 0 || x < 0 || y >= size_y || x >= size_x)
+	if ( y >= size_y || x >= size_x || map[y][x] == '\0' || map[y][x] == '\n' || map[y][x] == ' ' || map[y][x] == '1' || map[y][x] == 'I'
+		|| map[y][x] == 'V' || y < 0 || x < 0)
 		return ;
-	if (is_map_char(map[y + 1][x - 1]) && is_map_char(map[y][x - 1])
-		&& is_map_char(map[y - 1][x - 1]) && is_map_char(map[y + 1][x + 1])
-		&& is_map_char(map[y][x + 1]) && is_map_char(map[y - 1][x + 1])
-		&& is_map_char(map[y + 1][x]) && is_map_char(map[y - 1][x]))
+	if (is_map_char(map , y + 1, x - 1) && is_map_char(map , y, x - 1)
+		&& is_map_char(map, y - 1, x - 1) && is_map_char(map, y + 1, x + 1)
+		&& is_map_char(map, y, x + 1) && is_map_char(map, y - 1, x + 1)
+		&& is_map_char(map, y + 1, x) && is_map_char(map, y - 1, x))
 		map[y][x] = 'V';
 	else
 		map[y][x] = 'I';

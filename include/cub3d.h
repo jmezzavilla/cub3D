@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:51:22 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/23 18:59:59 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:28:03 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ void			free_game(t_game *gm);
 void			error_msg(char *message);
 // utils
 char			**convert_lst_to_char(t_list *lst);
-bool			is_map_char(char c);
+bool	is_map_char(char **map ,int y, int x);
 t_coord			*set_coord(double y, double x);
 int				argb(double a, int r, int g, int b);
 
