@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:50:36 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/25 17:01:02 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/26 11:44:29 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,33 @@ void	paint_ceiling(int color, int x, int d_start, t_game *game)
 	while (i < d_start)
 	{
 		put_pixel(&game->image_buffer, x, i, color);
+		i++;
+	}
+}
+void draw_door(int x, int draw_start, int draw_end)
+{
+	int		i;
+	double	wall_x;
+	t_coord	tex;
+	double	step;
+	double	tex_pos;
+
+	i = draw_start;
+	wall_x = get_wall_x(gm());
+	tex.x = (int)(wall_x * BLOCK_PIXEL);
+	if (gm()->raycast.side == 0 && gm()->raycast.dir->x > 0)
+		tex.x = BLOCK_PIXEL - tex.x - 1;
+	if (gm()->raycast.side == 1 && gm()->raycast.dir->y < 0)
+		tex.x = BLOCK_PIXEL - tex.x - 1;
+	step = 1.0 * BLOCK_PIXEL / gm()->raycast.line_height;
+	tex_pos = (draw_start - WIN_HEIGHT / 2 + gm()->raycast.line_height / 2)
+		* step;
+	while (i < draw_end)
+	{
+		tex.y = (int)tex_pos & (BLOCK_PIXEL - 1);
+		tex_pos += step;
+		put_pixel(&gm()->image_buffer, x, i,
+			get_pixel_color(action_door(get_door(gm()->raycast.dir->y,gm()->raycast.dir->x)), tex.x, tex.y));
 		i++;
 	}
 }

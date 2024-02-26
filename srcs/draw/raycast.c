@@ -6,11 +6,12 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:06:57 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/25 16:19:37 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/26 11:44:26 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 
 /*
 	// Calculate height of line to draw on screen
@@ -39,6 +40,7 @@ void	draw_raycast(int x, t_game *game)
 	if (draw_end < 0)
 		draw_end = 0;
 	draw_wall(x, draw_start, draw_end);
+	draw_door(x, draw_start, draw_end);
 	paint_floor(game->scene->color_f, x, draw_end, game);
 	paint_ceiling(game->scene->color_c, x, draw_start, game);
 }

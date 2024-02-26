@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:51:22 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/25 16:23:37 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/26 11:44:42 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,4 +232,6 @@ int						get_tex_x(int stripe);
 int						get_draw_end_y(void);
 int						get_draw_start_y(void);
 void	create_sprites(char *sprite_path, t_buffer *target);
+void draw_door(int x, int draw_start, int draw_end);
+
 #endif

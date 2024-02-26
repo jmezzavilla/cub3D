@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 22:44:49 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/25 16:33:12 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/26 11:46:20 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_buffer	*action_door(t_sprite *door)
 {
+	if(!door)
+		return NULL;
 	if (door->open)
 	{
 		if (door->animation == 1000)

@@ -55,7 +55,5 @@ t_buffer	*get_sprite_ray(t_sprite *sprite)
 {
 	if(sprite->type == 'M')
 		return action_enemy(sprite);
-	if(sprite->type == 'D')
-		return NULL;
 	return &sprite->img;
 }

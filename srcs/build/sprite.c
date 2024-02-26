@@ -63,7 +63,7 @@ void	set_sprite(int y, int x, char type)
 	sprite->type = type;
 	sprite->pos = set_coord((double)y + 0.5, (double)x + 0.5);
 	if(type == 'B')
-		create_sprites("./sprites/barril.xpm", &sprite->img);
+		printf("barril");
 	if(type == 'D')
 		sprite->open = false;
 	ft_lstadd_back(&gm()->sprites, ft_lstnew(sprite));

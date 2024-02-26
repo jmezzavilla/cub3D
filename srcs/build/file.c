@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:03 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 19:41:13 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/25 17:23:35 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void	read_file(int fd)
 	while (1)
 	{
 		line = get_next_line(fd);
-		ft_lstadd_back(&gm()->file->gnl, ft_lstnew(line));
 		if (!line)
 			break ;
+		ft_lstadd_back(&gm()->file->gnl, ft_lstnew(line));
 		read_get_next_line(line, &map, &nl, fd);
 	}
 }
