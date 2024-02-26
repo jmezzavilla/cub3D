@@ -6,7 +6,7 @@
 /*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:54:40 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 21:24:53 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:27:15 by jealves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	loop(t_game *game)
 {
-	clear_screen();
 	event_player(game);
 	raycast(game);
 	draw_minimap(game);
@@ -38,6 +37,8 @@ int	key_press(int key, t_game *game)
 		game->controls.rotate_right = RIGHT_KEY;
 	else if (key == M_KEY)
 		game->controls.minimap_view = !game->controls.minimap_view;
+	else if (key == SPACE_KEY)
+		open_door(game->player);
 	else if (key == ESC_KEY)
 		return (quit());
 	return (EXIT_SUCCESS);
@@ -62,7 +63,7 @@ int	key_release(int key, t_game *game)
 
 int	quit(void)
 {
-	prt("\033[1;34mFim\033[0m\n");
+	prt("\033[1;34mExit\033[0m\n");
 	free_game(gm());
 	exit(EXIT_SUCCESS);
 	return (0);

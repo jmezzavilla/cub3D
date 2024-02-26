@@ -6,19 +6,20 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:03 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/23 15:32:27 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:05:25 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*elem(char *result, char *cur, int fd, char **sp)
+char	*elem(char *result, char *cur, int fd, char **sp, char *line)
 {
 	int	size;
 
 	if (cur)
 	{
 		close(fd);
+		free(line);
 		ft_cleanup_strs(sp);
 		error_msg("More than one texture/color");
 	}
@@ -28,6 +29,7 @@ char	*elem(char *result, char *cur, int fd, char **sp)
 	return (ft_strdup(result));
 }
 
+// NEEDS FIXIN
 void	read_elements(char *line, int fd)
 {
 	char	**sp;
@@ -39,17 +41,17 @@ void	read_elements(char *line, int fd)
 	idxn = ft_strlen(sp[i - 1]);
 	sp[i - 1][idxn - 1] = '\0';
 	if (!ft_strcmp(sp[0], "NO"))
-		(gm()->file->path_no) = elem(sp[i - 1], gm()->file->path_no, fd, sp);
+		(gm()->file->path_no) = elem(sp[i - 1], gm()->file->path_no, fd, sp, line);
 	else if (!ft_strcmp(sp[0], "SO"))
-		(gm()->file->path_so) = elem(sp[i - 1], gm()->file->path_so, fd, sp);
+		(gm()->file->path_so) = elem(sp[i - 1], gm()->file->path_so, fd, sp, line);
 	else if (!ft_strcmp(sp[0], "WE"))
-		(gm()->file->path_we) = elem(sp[i - 1], gm()->file->path_we, fd, sp);
+		(gm()->file->path_we) = elem(sp[i - 1], gm()->file->path_we, fd, sp, line);
 	else if (!ft_strcmp(sp[0], "EA"))
-		(gm()->file->path_ea) = elem(sp[i - 1], gm()->file->path_ea, fd, sp);
+		(gm()->file->path_ea) = elem(sp[i - 1], gm()->file->path_ea, fd, sp, line);
 	else if (!ft_strcmp(sp[0], "F"))
-		(gm()->file->color_f) = elem(line + 2, gm()->file->color_f, fd, sp);
+		(gm()->file->color_f) = elem(line + 2, gm()->file->color_f, fd, sp, line);
 	else if (!ft_strcmp(sp[0], "C"))
-		(gm()->file->color_c) = elem(line + 2, gm()->file->color_c, fd, sp);
+		(gm()->file->color_c) = elem(line + 2, gm()->file->color_c, fd, sp, line);
 	ft_cleanup_strs(sp);
 	if (i != 2 && line[0] != '\n' && line[0] != 'F' && line[0] != 'C')
 		return (close(fd), free(line), error_msg("Invalid texture"));
@@ -61,8 +63,8 @@ void	read_get_next_line(char *line, bool *map, bool *nl, int fd)
 	{
 		if (ft_strcmp(line, "\n") && (!is_map(line) || *nl))
 		{
-			free(line);
 			close(fd);
+			free(line);
 			error_msg("Invalid structure map");
 		}
 		if (ft_strcmp(line, "\n") == 0)
@@ -73,7 +75,6 @@ void	read_get_next_line(char *line, bool *map, bool *nl, int fd)
 	}
 	else
 		read_elements(line, fd);
-	free(line);
 }
 
 void	read_file(int fd)
@@ -93,7 +94,9 @@ void	read_file(int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		ft_lstadd_back(&gm()->file->gnl, ft_lstnew(line));
 		read_get_next_line(line, &map, &nl, fd);
+		free(line);
 	}
 }
 
