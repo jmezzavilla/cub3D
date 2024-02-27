@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:51:22 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/27 13:31:49 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:47:04 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_coord
 typedef struct s_file
 {
 	t_list		*map_lst;
-	t_list		*gnl;
 	char		*path_no;
 	char		*path_so;
 	char		*path_we;
@@ -193,7 +192,6 @@ void			ft_cleanup_strs(char **strs);
 void			free_game(t_game *gm);
 // msg
 void			error_msg(char *message);
-void			free_gnl(t_list **lst);
 // utils
 char			**convert_lst_to_char(t_list *lst);
 bool			is_map_char(char **map, int y, int x);

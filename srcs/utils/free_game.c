@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:24:12 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/27 13:19:15 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:46:45 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ void	free_game(t_game *game)
 {
 	if (!game || !game->file)
 		return ;
-	if (game->file->gnl)
-		free_gnl(&game->file->gnl);
 	free_file_and_maps(game);
 	if (game->raycast.map)
 		free(game->raycast.map);

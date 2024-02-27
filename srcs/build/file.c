@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:03 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/27 13:28:36 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:46:41 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void	read_file(void)
 		line = get_next_line(gm()->fd);
 		if (!line)
 			break ;
-		ft_lstadd_back(&gm()->file->gnl, ft_lstnew(line));
 		read_get_next_line(line, &map, &nl);
 		free(line);
 	}
