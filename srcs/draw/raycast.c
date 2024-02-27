@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:06:57 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 23:58:01 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/27 14:34:27 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	calc_steps(t_game *game)
 	}
 }
 
+// Digital Differential Analyzer
 //! This is done by repeatedly adding the distance the ray
 //! travels in the x or y direction to the current
 //! position of the ray, and checking whether the new
@@ -147,6 +148,7 @@ void	init_ray(t_game *game, int x)
 //! raycast.side_dist are the distances that the ray
 //! has traveled in the x or y directions
 // if (game->raycast.side == 0)...
+// if side == 0, E/W else S/N
 void	raycast(t_game *game)
 {
 	int		x;
