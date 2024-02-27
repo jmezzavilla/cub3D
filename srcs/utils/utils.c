@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:47 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/26 18:35:54 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:20:18 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ char	**convert_lst_to_char(t_list *lst)
 	return (str);
 }
 
-bool	is_map_char(char **map ,int y, int x)
+bool	is_map_char(char **map, int y, int x)
 {
-	int sx;
+	int	sx;
+
 	sx = ft_strlen(map[y]) - 1;
-	if(sx < x)
-		return false;
+	if (sx < x)
+		return (false);
 	if (map[y][x] != ' ' && map[y][x] != '\n' && map[y][x] != '\0')
 		return (true);
 	return (false);

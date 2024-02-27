@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:51:22 by analexan          #+#    #+#             */
-/*   Updated: 2024/02/26 18:28:03 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:31:49 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_game
 	t_buffer	image_buffer;
 	char		**map;
 	char		**map_checker;
+	int			fd;
 	t_player	*player;
 	int			nbr_player;
 	int			mouse_on;
@@ -129,6 +130,10 @@ t_game			*gm(void);
 /// action
 // colision
 void			check_colision(char **map, double x, double y, t_coord *pos);
+t_buffer		*action_door(t_door *door);
+void			open_door(t_player *player);
+t_door			*get_door(int y, int x);
+void			build_door(void);
 
 // direction
 void			move_right(char **map, t_player *player);
@@ -188,15 +193,11 @@ void			ft_cleanup_strs(char **strs);
 void			free_game(t_game *gm);
 // msg
 void			error_msg(char *message);
+void			free_gnl(t_list **lst);
 // utils
 char			**convert_lst_to_char(t_list *lst);
-bool	is_map_char(char **map ,int y, int x);
+bool			is_map_char(char **map, int y, int x);
 t_coord			*set_coord(double y, double x);
 int				argb(double a, int r, int g, int b);
-
-t_door			*get_door(int y, int x);
-void			build_door(void);
-void			open_door(t_player *player);
-t_buffer		*action_door(t_door *door);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:31:42 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/22 17:25:52 by analexan         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:29:07 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,17 @@ void	error_msg(char *message)
 	dprt(2, "\033[1;31mError\n%s\033[0m\n", message);
 	free_game(gm());
 	exit(EXIT_FAILURE);
+}
+
+void	free_gnl(t_list **lst)
+{
+	t_list	*current;
+
+	while (*lst)
+	{
+		current = (*lst)->next;
+		free(*lst);
+		*lst = current;
+	}
+	*lst = NULL;
 }

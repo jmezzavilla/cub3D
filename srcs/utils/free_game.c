@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jealves- <jealves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: analexan <analexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 23:24:12 by jealves-          #+#    #+#             */
-/*   Updated: 2024/02/26 18:42:54 by jealves-         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:19:15 by analexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,26 +87,12 @@ void	free_file_and_maps(t_game *game)
 		ft_cleanup_strs(game->map_checker);
 }
 
-// NEEDS FIXIN
-void	temp_free_lst(t_list **lst)
-{
-	t_list	*current;
-
-	while (*lst)
-	{
-		current = (*lst)->next;
-		free(*lst);
-		*lst = current;
-	}
-	*lst = NULL;
-}
-
 void	free_game(t_game *game)
 {
 	if (!game || !game->file)
 		return ;
 	if (game->file->gnl)
-		temp_free_lst(&game->file->gnl);
+		free_gnl(&game->file->gnl);
 	free_file_and_maps(game);
 	if (game->raycast.map)
 		free(game->raycast.map);
